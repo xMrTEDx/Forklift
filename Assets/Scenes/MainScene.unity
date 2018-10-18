@@ -20,7 +20,7 @@ RenderSettings:
   m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.49928805, g: 0.52153796, b: 0.5660378, a: 1}
+  m_AmbientSkyColor: {r: 0.24226685, g: 0.3018868, b: 0.21502315, a: 1}
   m_AmbientEquatorColor: {r: 0.6691177, g: 0.6269755, b: 0.5362781, a: 1}
   m_AmbientGroundColor: {r: 0, g: 0, b: 0, a: 1}
   m_AmbientIntensity: 2
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1817895508}
-  m_IndirectSpecularColor: {r: 0.16600552, g: 0.17888364, b: 0.20724997, a: 1}
+  m_IndirectSpecularColor: {r: 0.16601175, g: 0.17889512, b: 0.20735812, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1882,6 +1882,16 @@ Prefab:
     - target: {fileID: 1390135072559662, guid: d6ea97e17cc35e04c975552f7eb274af, type: 2}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114241014973697626, guid: d6ea97e17cc35e04c975552f7eb274af,
+        type: 2}
+      propertyPath: m_MouseLook.XSensitivity
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 114241014973697626, guid: d6ea97e17cc35e04c975552f7eb274af,
+        type: 2}
+      propertyPath: m_MouseLook.YSensitivity
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
