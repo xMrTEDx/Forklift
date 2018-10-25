@@ -10,13 +10,15 @@ using States = PlayerStatesSystem.States;
 public class InteractionIndicatorControl : MonoBehaviour
 {
     public static InteractionIndicatorControl currentHighlightedII = null;
-    
+
     [Header("Player states which indicator is visible")]
     [Space]
     public States[] playerStates;
     [Header("Set true if II not require players in that state")]
-    public bool alwaysVisible;
+    public bool onTriggerStayNotRequired;
     public bool disableAfterInteraction = true;
+    [Header("In which quests visible")]
+    
     [Space]
     [Header("Events")]
 
@@ -43,33 +45,39 @@ public class InteractionIndicatorControl : MonoBehaviour
     void Awake()
     {
         interactionComponent = gameObject.GetComponent<InteractionIndicatorComponent>();
+        if (onTriggerStayNotRequired)
+            OnAreaEnter();
     }
-	void Update()
-	{
-		if(alwaysVisible) LookAtPlayer();
-	}
+    void Update()
+    {
+        if (onTriggerStayNotRequired)
+        {
+            LookAtPlayer();
+            CheckIfPlayerLookAt();
+        }
+    }
     public void LookAtPlayer()
     {
         if (Camera.main)
         {
-			if(interactionComponent.iiPoint)
-            	interactionComponent.iiPoint.transform.LookAt(Camera.main.transform);
-			if(interactionComponent.iiPointE)
-            	interactionComponent.iiPointE.transform.LookAt(Camera.main.transform);
+            if (interactionComponent.iiPoint)
+                interactionComponent.iiPoint.transform.LookAt(Camera.main.transform);
+            if (interactionComponent.iiPointE)
+                interactionComponent.iiPointE.transform.LookAt(Camera.main.transform);
         }
     }
 
     public void OnAreaEnter()
     {
-		interactionComponent.iiPoint.SetActive(true);
-		interactionComponent.iiPointE.SetActive(true);
+        interactionComponent.iiPoint.SetActive(true);
+        interactionComponent.iiPointE.SetActive(true);
         interactionComponent.iiPoint_SR.enabled = true;
         interactionIndicatorEvents.e_OnAreaEnter.Invoke();
     }
     public void OnAreaExit()
     {
-		interactionComponent.iiPoint.SetActive(false);
-		interactionComponent.iiPointE.SetActive(false);
+        interactionComponent.iiPoint.SetActive(false);
+        interactionComponent.iiPointE.SetActive(false);
         interactionComponent.iiPoint_SR.enabled = false;
         interactionIndicatorEvents.e_OnAreaExit.Invoke();
     }
@@ -81,72 +89,72 @@ public class InteractionIndicatorControl : MonoBehaviour
     public void OnInteractionAreaExit()
     {
         interactionIndicatorEvents.e_OnInteractionAreaExit.Invoke();
-		HideInteractionKey();
+        HideInteractionKey();
     }
     ////////////////////////////////////////////////////////////
     public void OnInteraction()
     {
         e_Interaction.Invoke();
+        currentHighlightedII = null;
 
-        if(disableAfterInteraction)
+        if (disableAfterInteraction)
             InteractionDisable();
     }
-    public void CheckIfLookAt()
+    public void CheckIfPlayerLookAt()
     {
-		if(Camera.main)
-		{
-            
+        if (Camera.main)
+        {
+
             Vector3 interactionPointPosition = interactionComponent.iiPoint.transform.position;
             Vector3 dirFromMeToObject = (interactionPointPosition - Camera.main.transform.position).normalized;
-            Vector3 myCurrentFacingDir =   Camera.main.transform.forward;
-                    
-            //Debug.Log(Vector3.Dot(dirFromMeToObject, myCurrentFacingDir));
-            
+            Vector3 myCurrentFacingDir = Camera.main.transform.forward;
+
             if (Vector3.Dot(dirFromMeToObject, myCurrentFacingDir) > 0.99)
             {
-                if(currentHighlightedII == null)
+                if (currentHighlightedII == null)
                 {
                     ShowInteractionKey();
                     currentHighlightedII = this;
                 }
 
-                if(currentHighlightedII == this)
-                    if(Input.GetKeyDown(KeyCode.E))
+                if (currentHighlightedII == this)
+                    if (Input.GetKeyDown(KeyCode.E))
                         OnInteraction();
             }
             else
             {
-                if(currentHighlightedII == this)
+                if (currentHighlightedII == this)
                 {
                     currentHighlightedII = null;
                     HideInteractionKey();
                 }
             }
-				
-		}
-      
+
+        }
+
     }
     private void InteractionDisable()
     {
-        currentHighlightedII = null;
+        if (currentHighlightedII == this)
+            currentHighlightedII = null;
 
-		interactionComponent.iiPoint.SetActive(false);
-		interactionComponent.iiPointE.SetActive(false);
+        interactionComponent.iiPoint.SetActive(false);
+        interactionComponent.iiPointE.SetActive(false);
         interactionComponent.iiPoint_SR.enabled = false;
-		interactionComponent.iiPointE_SR.enabled = false;
+        interactionComponent.iiPointE_SR.enabled = false;
     }
-	private void ShowInteractionKey()
-	{
-		interactionComponent.iiPointE_SR.enabled = true;
-		interactionComponent.iiPoint_SR.enabled = false;
-	}
+    private void ShowInteractionKey()
+    {
+        interactionComponent.iiPointE_SR.enabled = true;
+        interactionComponent.iiPoint_SR.enabled = false;
+    }
 
-	private void HideInteractionKey()
-	{    
-		interactionComponent.iiPointE_SR.enabled = false;
-		interactionComponent.iiPoint_SR.enabled = true;
-        
+    private void HideInteractionKey()
+    {
+        interactionComponent.iiPointE_SR.enabled = false;
+        interactionComponent.iiPoint_SR.enabled = true;
+
     }
-    
-    
+
+
 }

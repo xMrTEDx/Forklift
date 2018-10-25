@@ -8,17 +8,20 @@ public class Interaction : MonoBehaviour {
 	
 	void OnTriggerEnter(Collider other)
 	{
-		if(interactionIndicatorControl.alwaysVisible||other.CompareTag("Player")) interactionIndicatorControl.OnInteractionAreaEnter();
+		if(!interactionIndicatorControl.onTriggerStayNotRequired)
+		if(other.CompareTag("Player")) interactionIndicatorControl.OnInteractionAreaEnter();
 	}
 	void OnTriggerExit(Collider other)
 	{
-		if(interactionIndicatorControl.alwaysVisible||other.CompareTag("Player")) interactionIndicatorControl.OnInteractionAreaExit();
+		if(!interactionIndicatorControl.onTriggerStayNotRequired)
+		if(other.CompareTag("Player")) interactionIndicatorControl.OnInteractionAreaExit();
 	}
 	void OnTriggerStay(Collider other)
 	{
-		if(interactionIndicatorControl.alwaysVisible||other.CompareTag("Player"))
+		if(!interactionIndicatorControl.onTriggerStayNotRequired)
+		if(other.CompareTag("Player"))
 		{
-			interactionIndicatorControl.CheckIfLookAt();
+			interactionIndicatorControl.CheckIfPlayerLookAt();
 		}
 	}
 }

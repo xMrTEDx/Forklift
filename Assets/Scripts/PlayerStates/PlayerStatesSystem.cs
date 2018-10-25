@@ -11,12 +11,9 @@ public class PlayerStatesSystem : Singleton<PlayerStatesSystem>
 		get { return playerState; }
 	}
 
-    //public CarriageSteering carriageSteering;
-    //public ForkliftCameraController forkliftCameraController;
-
     public void SetPlayerState(string state)
 	{
-        Debug.Log("change player state:    "+state);
+        //Debug.Log("change player state:    "+state);
         foreach (States st in (States[]) System.Enum.GetValues(typeof(States)))
         {
             if(st.ToString() == state)
@@ -25,7 +22,7 @@ public class PlayerStatesSystem : Singleton<PlayerStatesSystem>
             }
         }
 		
-        InteractionIndicatorSystem.Instance.SetIIvisibleFromPlayerState();
+        InteractionIndicatorSystem.Instance.RefreshIIvisible();
 	}
 
     void Start()

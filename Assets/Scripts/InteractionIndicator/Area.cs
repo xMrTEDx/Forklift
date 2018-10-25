@@ -8,14 +8,17 @@ public class Area : MonoBehaviour {
 	
 	void OnTriggerEnter(Collider other)
 	{
-		if(interactionIndicatorControl.alwaysVisible||other.CompareTag("Player")) interactionIndicatorControl.OnAreaEnter();
+		if(!interactionIndicatorControl.onTriggerStayNotRequired)
+		if(other.CompareTag("Player")) interactionIndicatorControl.OnAreaEnter();
 	}
 	void OnTriggerExit(Collider other)
 	{
-		if(interactionIndicatorControl.alwaysVisible||other.CompareTag("Player")) interactionIndicatorControl.OnAreaExit();
+		if(!interactionIndicatorControl.onTriggerStayNotRequired)
+		if(other.CompareTag("Player")) interactionIndicatorControl.OnAreaExit();
 	}
 	void OnTriggerStay(Collider other)
 	{
-		if(interactionIndicatorControl.alwaysVisible||other.CompareTag("Player")) interactionIndicatorControl.LookAtPlayer();
+		if(!interactionIndicatorControl.onTriggerStayNotRequired)
+		if(other.CompareTag("Player")) interactionIndicatorControl.LookAtPlayer();
 	}
 }
