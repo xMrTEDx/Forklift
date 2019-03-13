@@ -14,6 +14,7 @@ public class LerpController : MonoBehaviour
     {
         GameManager.Instance.lerpSystem.CameraLerpTo(e_OnLerpFinished, lerpSpeed, this);
     }
+
     void OnDrawGizmos()
     {
         Gizmos.color = Color.red;

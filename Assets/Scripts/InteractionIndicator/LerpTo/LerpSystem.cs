@@ -16,6 +16,7 @@ public class LerpSystem : MonoBehaviour {
 
         movement = StartCoroutine(SetCameraTransform(AfterLerpAction, speed, target));
     }
+
     IEnumerator SetCameraTransform(UnityEvent AfterLerpAction,float speed, LerpController target)
     {
         if (Camera.main)
@@ -42,16 +43,13 @@ public class LerpSystem : MonoBehaviour {
                 yield return null;
             }
 
-            Camera.main.transform.SetParent(target.transform);
-            Camera.main.transform.localRotation = new Quaternion(0, 0, 0, 0);
-            Camera.main.transform.localPosition = Vector3.zero;
+            Camera.main.transform.SetParent(target.transform,true);
+            //Camera.main.transform.localRotation = new Quaternion(0, 0, 0, 0);
+            //Camera.main.transform.localPosition = Vector3.zero;
 
-            AfterLerpAction.Invoke();
             if (AfterLerpAction != null) AfterLerpAction.Invoke();
-
 
             //Destroy(tmpCamera);
         }
-
     }
 }

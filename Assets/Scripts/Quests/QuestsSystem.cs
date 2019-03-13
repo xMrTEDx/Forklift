@@ -27,6 +27,10 @@ public class QuestsSystem : MonoBehaviour
         {
             item.Init(this);
         }
+        if(!PlayerPrefs.HasKey("Quest1"))
+        PlayerPrefs.SetInt("Quest1",1);
+        if(!PlayerPrefs.HasKey("Quest2"))
+        PlayerPrefs.SetInt("Quest2",1);
     }
 
     public void ShowQuestsView()
@@ -43,7 +47,7 @@ public class QuestsSystem : MonoBehaviour
         if (number <= quests.Count)
         {
             Quest quest = quests[number - 1];
-            Debug.Log("number: " + number);
+            //Debug.Log("number: " + number);
 
             quest.lerpToQuestCamera.CameraLerpTo();
             if (currentQuest != null && currentQuest.questObjects != null) Destroy(currentQuest.questObjects);
@@ -51,7 +55,7 @@ public class QuestsSystem : MonoBehaviour
             clone.SetActive(true);
             currentQuest = new QuestData(number, quest, clone);
 
-            Debug.Log(number);
+            //Debug.Log(number);
             GameManager.Instance.GUIcontroller.questsScreen.SelectQuest(number,quests[number -1].description);
         }
     }
@@ -64,9 +68,10 @@ public class QuestsSystem : MonoBehaviour
         {
             if (currentQuest.questNumber == 1) ShowQuest(2);
             else if (currentQuest.questNumber == 2) ShowQuest(3);
-            else if (currentQuest.questNumber == 3) ShowQuest(1);
+            else if (currentQuest.questNumber == 3) ShowQuest(4);
+            else if (currentQuest.questNumber == 4) ShowQuest(1);
         }
-        if (Input.GetKeyDown(KeyCode.Return))
+        if (Input.GetKeyDown(KeyCode.O))
             currentQuest.questObjects.GetComponent<QuestComponent>().lerpToPlayer.CameraLerpTo();
 
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -75,9 +80,9 @@ public class QuestsSystem : MonoBehaviour
                 GameManager.Instance.GUIcontroller.questsScreen.HideQuestsScreen();
             }
     }
-    public bool IsQuestUnlocked(int number)
+    public bool IsQuestLocked(int number)
     {
-        //TODO
-        return true;
+        if(!PlayerPrefs.HasKey("Quest"+number)) return true;
+        return false;
     }
 }

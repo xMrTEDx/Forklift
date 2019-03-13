@@ -8,25 +8,26 @@ public class QuestsScreenController : MonoBehaviour
 
     public Texture diamondTexture;
     public GameObject zadania;
-	public Text opis;
+    public Text opis;
     public GameObject diamondExample;
+    public GameObject lockerExample;
     public List<GameObject> diamonds = new List<GameObject>();
     private int currentSelectedDiamond;
 
     public void ShowQuestsScreen()
     {
-		zadania.SetActive(true);
-		opis.gameObject.SetActive(true);
+        zadania.SetActive(true);
+        opis.gameObject.SetActive(true);
         GenerateDiamonds();
     }
-	public void HideQuestsScreen()
-	{
-		zadania.SetActive(false);
-		opis.gameObject.SetActive(false);
-	}
+    public void HideQuestsScreen()
+    {
+        zadania.SetActive(false);
+        opis.gameObject.SetActive(false);
+    }
     public void SelectQuest(int i, string description)
     {
-        Debug.Log("Select diamond number: " + i);
+        //Debug.Log("Select diamond number: " + i);
         if (i <= diamonds.Count && i > 0)
         {
             DeselectQuest(currentSelectedDiamond);
@@ -34,7 +35,7 @@ public class QuestsScreenController : MonoBehaviour
             diamonds[i - 1].transform.localScale = new Vector3(1.6f, 1.6f, 1.6f);
             currentSelectedDiamond = i;
 
-			opis.text = description;
+            opis.text = description;
         }
 
     }
@@ -49,23 +50,20 @@ public class QuestsScreenController : MonoBehaviour
 
     public void GenerateDiamonds()
     {
-		for (int i = 0; i < diamonds.Count; i++)
-        	Destroy(diamonds[i].gameObject);
-		diamonds.Clear();
+        for (int i = 0; i < diamonds.Count; i++)
+            Destroy(diamonds[i].gameObject);
+        diamonds.Clear();
 
-		for (int i = 0; i < GameManager.Instance.QuestsSystem.quests.Count; i++)
+        for (int i = 0; i < GameManager.Instance.QuestsSystem.quests.Count; i++)
         {
-            if (i < diamonds.Count && diamonds[i] != null)	Destroy(diamonds[i].gameObject);
+            if (i < diamonds.Count && diamonds[i] != null) Destroy(diamonds[i].gameObject);
 
-            GameObject newDiamond = Instantiate(diamondExample, zadania.transform, true);
+            GameObject newDiamond;
+			Debug.Log(i+1);
+            if (!GameManager.Instance.QuestsSystem.IsQuestLocked(i+1)) newDiamond = Instantiate(diamondExample, zadania.transform, true);
+            else newDiamond = Instantiate(lockerExample, zadania.transform, true);
             diamonds.Add(newDiamond);
             newDiamond.SetActive(true);
-
-
-            if (!GameManager.Instance.QuestsSystem.IsQuestUnlocked(i + 1))
-            {
-                //TODO zmienic teksture na klodke
-            }
         }
     }
 }
