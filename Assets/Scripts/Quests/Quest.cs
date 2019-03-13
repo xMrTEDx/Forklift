@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class Quest : MonoBehaviour {
 
-	public LerpTo_Camera_Controller lerpToPlayer;
-	public LerpTo_Camera_Controller lerpToQuestCamera;
+	private QuestsSystem questsSystem;
+	public LerpController lerpToQuestCamera;
+	public GameObject QuestObjects;
+	[TextArea]
 	public string description;
 	public Goal[] cele;
 	public class Goal
@@ -20,10 +22,8 @@ public class Quest : MonoBehaviour {
 			niewykonane,
 		}
 	}
-
-	public void ShowQuest()
+	public void Init(QuestsSystem qs)
 	{
-		gameObject.SetActive(true);
-		lerpToQuestCamera.CameraLerpTo();
+		questsSystem = qs;
 	}
 }

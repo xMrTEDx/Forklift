@@ -8,12 +8,11 @@ public class MainMenuController : MonoBehaviour
     public MainMenuWindow mainWindow;
     public MainMenuWindow creditsWindow;
 	public MainMenuWindow[] windows;
-    private MainMenuWindow currentWindow;
+    public GameObject WindowsRef;
+    public MainMenuWindow CurrentWindow;
+    public LerpController CurrentLerpPoint;
 
     CanvasGroup canvasGroup;
-
-    public MainMenuWindow CurrentWindow
-    {get;    set;}
 
     public void Init()
     {
@@ -31,7 +30,7 @@ public class MainMenuController : MonoBehaviour
 
     public void ShowMainMenu(float speed)
     {
-        gameObject.SetActive(true);
+        WindowsRef.SetActive(true);
 		canvasGroup.interactable = true;
         StartCoroutine(ShowMainMenuCoroutine(speed));
 		mainWindow.EnableWindow();
@@ -58,7 +57,10 @@ public class MainMenuController : MonoBehaviour
             yield return null;
             canvasGroup.alpha -= Time.deltaTime * speed;
         }
-        if(currentWindow) currentWindow.DisableWindow();
-        gameObject.SetActive(false);
+        if(CurrentWindow) CurrentWindow.DisableWindow();
+        CurrentWindow = null;
+        CurrentLerpPoint = null;
+
+        WindowsRef.SetActive(false);
     }
 }

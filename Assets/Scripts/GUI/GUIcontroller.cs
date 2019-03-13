@@ -6,6 +6,7 @@ public class GUIcontroller : MonoBehaviour {
 
 	public MainMenuController mainMenuController;
 	public BlackoutController blackoutController;
+	public QuestsScreenController questsScreen;
 
 	public void Init()
 	{

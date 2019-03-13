@@ -3,22 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class LerpTo_Camera_Controller : MonoBehaviour
-{
+public class LerpSystem : MonoBehaviour {
 
-    [Range(0.1f, 6f)]
-    public float lerpSpeed = 2.2f;
-    public UnityEvent e_OnLerpFinished = new UnityEngine.Events.UnityEvent();
-
-    public void CameraLerpTo()
+    Coroutine movement;
+    public LerpController currentLerpPoint;
+	public void CameraLerpTo(UnityEvent AfterLerpAction, float speed, LerpController target)
     {
-        //Debug.Log("lerp");
+        if(movement !=null) StopCoroutine(movement);
 
         GameManager.Instance.PlayerStatesSystem.SetPlayerState("LerpTo");
+        currentLerpPoint = target;
 
-        StartCoroutine(SetCameraTransform());
+        movement = StartCoroutine(SetCameraTransform(AfterLerpAction, speed, target));
     }
-    IEnumerator SetCameraTransform()
+    IEnumerator SetCameraTransform(UnityEvent AfterLerpAction,float speed, LerpController target)
     {
         if (Camera.main)
         {
@@ -36,29 +34,24 @@ public class LerpTo_Camera_Controller : MonoBehaviour
             float hlp = 0;
             while (hlp < 1)
             {
-                hlp += lerpSpeed * Time.deltaTime;
+                hlp += speed * Time.deltaTime;
 
-                Camera.main.transform.rotation = Quaternion.Lerp(startRotation, gameObject.transform.rotation, hlp);
-                Camera.main.transform.position = Vector3.Lerp(startPosition, gameObject.transform.position, hlp);
+                Camera.main.transform.rotation = Quaternion.Lerp(startRotation, target.transform.rotation, hlp);
+                Camera.main.transform.position = Vector3.Lerp(startPosition, target.transform.position, hlp);
 
                 yield return null;
             }
 
-            Camera.main.transform.SetParent(this.transform);
+            Camera.main.transform.SetParent(target.transform);
             Camera.main.transform.localRotation = new Quaternion(0, 0, 0, 0);
             Camera.main.transform.localPosition = Vector3.zero;
 
-            e_OnLerpFinished.Invoke();
+            AfterLerpAction.Invoke();
+            if (AfterLerpAction != null) AfterLerpAction.Invoke();
 
 
             //Destroy(tmpCamera);
         }
 
-    }
-    void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawLine(transform.position, (transform.position + transform.forward * 5));
-        Gizmos.DrawWireSphere(transform.position, 0.5f);
     }
 }

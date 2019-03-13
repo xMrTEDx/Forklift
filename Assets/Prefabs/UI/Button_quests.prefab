@@ -40,7 +40,7 @@ GameObject:
   - component: {fileID: 114497149248542568}
   - component: {fileID: 114371596646461644}
   m_Layer: 5
-  m_Name: Button_menu
+  m_Name: Button_quests
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
