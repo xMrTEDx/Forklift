@@ -16,7 +16,7 @@ public class ExitForkliftController : MonoBehaviour
     void Update()
     {
 		//Debug.Log("LEFT: "+exit_Left_Trigger.anyCollidersInsideTrigger()+"     RIGHT: "+exit_Right_Trigger.anyCollidersInsideTrigger());
-        if (PlayerStatesSystem.Instance.PlayerState == PlayerStatesSystem.States.forklift)
+        if (GameManager.Instance.PlayerStatesSystem.PlayerState == PlayerStatesSystem.States.forklift)
         {
             if (Input.GetKeyDown(KeyCode.X))
             {

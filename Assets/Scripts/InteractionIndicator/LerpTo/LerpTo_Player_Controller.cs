@@ -11,7 +11,7 @@ public class LerpTo_Player_Controller : MonoBehaviour {
 	
 	public void PlayerLerpTo()
 	{
-		PlayerStatesSystem.Instance.SetPlayerState("None");
+		GameManager.Instance.PlayerStatesSystem.SetPlayerState("None");
 
 		StartCoroutine(SetPlayerTransform());
 	}

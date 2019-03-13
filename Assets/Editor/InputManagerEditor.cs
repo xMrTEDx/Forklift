@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEditor;
 using UnityEditorInternal;
 
-[CustomEditor(typeof(InputManager))]
+//[CustomEditor(typeof(InputManager))]
 public class InputManagerEditor : Editor {
 
 	InputManager inputManager;

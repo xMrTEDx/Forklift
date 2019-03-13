@@ -3,14 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using States = PlayerStatesSystem.States;
 
-public class InteractionIndicatorSystem : Singleton<InteractionIndicatorSystem>
+public class InteractionIndicatorSystem : MonoBehaviour
 {
 
     public List<GameObject> interactionIndicators;
 
+    public void Init()
+    {
+        FindAllIIfromScene();
+    }
+
     public void RefreshIIvisible()
     {
-        if (PlayerStatesSystem.Instance)
+        if (GameManager.Instance.PlayerStatesSystem)
         {
             foreach (var item in interactionIndicators)
             {
@@ -20,7 +25,7 @@ public class InteractionIndicatorSystem : Singleton<InteractionIndicatorSystem>
                 States[] IIstates = IIControl.playerStates;
                 foreach (var i in IIstates)
                 {
-                    if (i == PlayerStatesSystem.Instance.PlayerState)
+                    if (i == GameManager.Instance.PlayerStatesSystem.PlayerState)
                         flag = true;
                     else break;
                 }

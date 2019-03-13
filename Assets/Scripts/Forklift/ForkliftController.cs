@@ -56,7 +56,7 @@ public class ForkliftController : MonoBehaviour
 
 
 
-        PlayerStatesSystem.Instance.SetPlayerState("forklift");
+        GameManager.Instance.PlayerStatesSystem.SetPlayerState("forklift");
     }
     public void GetDownForklift()
     {

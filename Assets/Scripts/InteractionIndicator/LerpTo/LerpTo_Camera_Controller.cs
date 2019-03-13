@@ -14,7 +14,7 @@ public class LerpTo_Camera_Controller : MonoBehaviour
     {
         //Debug.Log("lerp");
 
-        PlayerStatesSystem.Instance.SetPlayerState("LerpTo");
+        GameManager.Instance.PlayerStatesSystem.SetPlayerState("LerpTo");
 
         StartCoroutine(SetCameraTransform());
     }

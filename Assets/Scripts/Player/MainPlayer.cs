@@ -16,7 +16,7 @@ public class MainPlayer : Singleton<MainPlayer> {
 		//character.SetActive(true);
 		//Camera.SetupCurrent(character.GetComponent<Camera>());
 		camera.transform.rotation = new Quaternion(0,0,0,0);
-		PlayerStatesSystem.Instance.SetPlayerState("walking");
+		GameManager.Instance.PlayerStatesSystem.SetPlayerState("walking");
 		
 	}
 }

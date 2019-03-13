@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityStandardAssets.Characters.FirstPerson;
 
-public class PlayerStatesSystem : Singleton<PlayerStatesSystem>
+public class PlayerStatesSystem : MonoBehaviour
 {
     public States playerState = States.none;
 	public States PlayerState
@@ -13,7 +13,6 @@ public class PlayerStatesSystem : Singleton<PlayerStatesSystem>
 
     public void SetPlayerState(string state)
 	{
-        //Debug.Log("change player state:    "+state);
         foreach (States st in (States[]) System.Enum.GetValues(typeof(States)))
         {
             if(st.ToString() == state)
@@ -22,13 +21,12 @@ public class PlayerStatesSystem : Singleton<PlayerStatesSystem>
             }
         }
 		
-        InteractionIndicatorSystem.Instance.RefreshIIvisible();
+        GameManager.Instance.IIsystem.RefreshIIvisible();
 	}
 
-    void Start()
+    public void Init()
     {
-        InteractionIndicatorSystem.Instance.FindAllIIfromScene();
-        SetPlayerState("walking");
+        SetPlayerState("none");
     }
 
     void Update()
@@ -62,7 +60,8 @@ public class PlayerStatesSystem : Singleton<PlayerStatesSystem>
         playerAnimation,
 		forklift,
         forkliftSteering,
-        lerpTo
+        lerpTo,
+        menu
 	}
     
 }
