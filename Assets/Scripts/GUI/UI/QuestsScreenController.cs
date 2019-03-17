@@ -19,13 +19,14 @@ public class QuestsScreenController : MonoBehaviour
         zadania.SetActive(true);
         opis.gameObject.SetActive(true);
         GenerateDiamonds();
+        GameManager.Instance.PlayerStatesSystem.SetPlayerState("quests");
     }
     public void HideQuestsScreen()
     {
         zadania.SetActive(false);
         opis.gameObject.SetActive(false);
     }
-    public void SelectQuest(int i, string description)
+    public void SelectQuest(int i)
     {
         //Debug.Log("Select diamond number: " + i);
         if (i <= diamonds.Count && i > 0)
@@ -35,7 +36,7 @@ public class QuestsScreenController : MonoBehaviour
             diamonds[i - 1].transform.localScale = new Vector3(1.6f, 1.6f, 1.6f);
             currentSelectedDiamond = i;
 
-            opis.text = description;
+            //opis.text = description;
         }
 
     }
@@ -59,11 +60,12 @@ public class QuestsScreenController : MonoBehaviour
             if (i < diamonds.Count && diamonds[i] != null) Destroy(diamonds[i].gameObject);
 
             GameObject newDiamond;
-			Debug.Log(i+1);
-            if (!GameManager.Instance.QuestsSystem.IsQuestLocked(i+1)) newDiamond = Instantiate(diamondExample, zadania.transform, true);
+            Debug.Log(i + 1);
+            if (!GameManager.Instance.QuestsSystem.IsQuestLocked(i + 1)) newDiamond = Instantiate(diamondExample, zadania.transform, true);
             else newDiamond = Instantiate(lockerExample, zadania.transform, true);
             diamonds.Add(newDiamond);
             newDiamond.SetActive(true);
         }
     }
+    
 }

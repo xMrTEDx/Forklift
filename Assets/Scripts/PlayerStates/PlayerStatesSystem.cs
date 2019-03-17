@@ -6,23 +6,40 @@ using UnityStandardAssets.Characters.FirstPerson;
 public class PlayerStatesSystem : MonoBehaviour
 {
     public States playerState = States.none;
-	public States PlayerState
-	{
-		get { return playerState; }
-	}
+    public States PlayerState
+    {
+        get { return playerState; }
+    }
+    public GameStates gameState = GameStates.none;
+    public GameStates GameState
+    {
+        get { return gameState; }
+    }
 
     public void SetPlayerState(string state)
-	{
-        foreach (States st in (States[]) System.Enum.GetValues(typeof(States)))
+    {
+        foreach (States st in (States[])System.Enum.GetValues(typeof(States)))
         {
-            if(st.ToString() == state)
+            if (string.Compare(st.ToString(), state, true) == 0)
             {
                 playerState = st;
+                Debug.Log("Set player state to: " + st.ToString());
             }
         }
-		
+
         GameManager.Instance.IIsystem.RefreshIIvisible();
-	}
+    }
+    public void SetGameState(string state)
+    {
+        foreach (GameStates st in (GameStates[])System.Enum.GetValues(typeof(GameStates)))
+        {
+            if (string.Compare(st.ToString(), state, true) == 0)
+            {
+                gameState = st;
+                Debug.Log("Set player state to: " + st.ToString());
+            }
+        }
+    }
 
     public void Init()
     {
@@ -37,15 +54,28 @@ public class PlayerStatesSystem : MonoBehaviour
         }
         if (playerState == States.forklift)
         {
-            if(ForkliftController.currentForklift)
-            ForkliftController.currentForklift.ForkliftStay();
+            if (ForkliftController.currentForklift)
+                ForkliftController.currentForklift.ForkliftStay();
         }
         if (playerState == States.forkliftSteering)
         {
-            if(ForkliftController.currentForklift)
-            ForkliftController.currentForklift.ForkliftSteering();
+            if (ForkliftController.currentForklift)
+                ForkliftController.currentForklift.ForkliftSteering();
         }
-        
+
+
+
+
+        if (gameState == GameStates.quests && (playerState != States.none || playerState == States.lerpTo))
+        {
+            GameManager.Instance.QuestsSystem.InputListener();
+        }
+        if(gameState == GameStates.pressanykey)
+        {
+            GameManager.Instance.GUIcontroller.pressAnyKeyController.InputListener();
+        }
+
+
     }
     void FixedUpdate()
     {
@@ -54,14 +84,21 @@ public class PlayerStatesSystem : MonoBehaviour
     }
 
     public enum States
-	{
+    {
         none,
-		walking,
+        walking,
         playerAnimation,
-		forklift,
+        forklift,
         forkliftSteering,
-        lerpTo,
-        menu
-	}
-    
+        lerpTo
+    }
+    public enum GameStates
+    {
+        none,
+        mainmenu,
+        quests,
+        game,
+        pressanykey
+    }
+
 }

@@ -12,7 +12,11 @@ public class LerpController : MonoBehaviour
 
     public void CameraLerpTo()
     {
-        GameManager.Instance.lerpSystem.CameraLerpTo(e_OnLerpFinished, lerpSpeed, this);
+        GameManager.Instance.lerpSystem.CameraLerpTo(e_OnLerpFinished, null, lerpSpeed, this);
+    }
+    public void CameraLerpTo(UnityEvent afterLerpAction)
+    {
+        GameManager.Instance.lerpSystem.CameraLerpTo(e_OnLerpFinished, afterLerpAction, lerpSpeed, this);
     }
 
     void OnDrawGizmos()

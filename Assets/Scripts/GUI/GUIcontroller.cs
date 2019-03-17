@@ -7,11 +7,14 @@ public class GUIcontroller : MonoBehaviour {
 	public MainMenuController mainMenuController;
 	public BlackoutController blackoutController;
 	public QuestsScreenController questsScreen;
+	public PressAnyKeyController pressAnyKeyController;
 
 	public void Init()
 	{
 		mainMenuController.Init();
 
 		blackoutController.Init();
+
+		pressAnyKeyController.Init();
 	}
 }

@@ -1,26 +1,30 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class MainMenuController : MonoBehaviour
 {
 
     public MainMenuWindow mainWindow;
     public MainMenuWindow creditsWindow;
-	public MainMenuWindow[] windows;
+    public MainMenuWindow[] windows;
     public GameObject WindowsRef;
+    public LerpController mainLerpPoint;
     public MainMenuWindow CurrentWindow;
     public LerpController CurrentLerpPoint;
 
     CanvasGroup canvasGroup;
 
+    Coroutine showhidecoroutine;
+
     public void Init()
     {
         GetComponents();
-		windows = GetComponentsInChildren<MainMenuWindow>(true);
-		foreach (var item in windows) item.Init(this);
+        windows = GetComponentsInChildren<MainMenuWindow>(true);
+        foreach (var item in windows) item.Init(this);
 
-        ShowMainMenu(6);
+        //ShowMainMenu(6);
     }
 
     public void GetComponents()
@@ -30,14 +34,24 @@ public class MainMenuController : MonoBehaviour
 
     public void ShowMainMenu(float speed)
     {
-        WindowsRef.SetActive(true);
-		canvasGroup.interactable = true;
-        StartCoroutine(ShowMainMenuCoroutine(speed));
-		mainWindow.EnableWindow();
+        GameManager.Instance.PlayerStatesSystem.SetGameState("mainmenu");
+        GameManager.Instance.PlayerStatesSystem.SetPlayerState("none");
+
+        UnityEvent afterLerpEvent = new UnityEvent();
+        afterLerpEvent.AddListener(() =>
+        {
+            WindowsRef.SetActive(true);
+            canvasGroup.interactable = true;
+            if (showhidecoroutine != null) StopCoroutine(showhidecoroutine);
+            showhidecoroutine = StartCoroutine(ShowMainMenuCoroutine(speed));
+            mainWindow.EnableWindow();
+        });
+
+        mainLerpPoint.CameraLerpTo(afterLerpEvent);
     }
     IEnumerator ShowMainMenuCoroutine(float speed)
     {
-		canvasGroup.alpha = 0;
+        canvasGroup.alpha = 0;
         while (canvasGroup.alpha < 1)
         {
             yield return null;
@@ -46,8 +60,9 @@ public class MainMenuController : MonoBehaviour
     }
     public void HideMainMenu(float speed)
     {
-		canvasGroup.interactable = false;
-        StartCoroutine(HideMainMenuCoroutine(speed));
+        canvasGroup.interactable = false;
+        if (showhidecoroutine != null) StopCoroutine(showhidecoroutine);
+        showhidecoroutine = StartCoroutine(HideMainMenuCoroutine(speed));
     }
     IEnumerator HideMainMenuCoroutine(float speed)
     {
@@ -57,7 +72,7 @@ public class MainMenuController : MonoBehaviour
             yield return null;
             canvasGroup.alpha -= Time.deltaTime * speed;
         }
-        if(CurrentWindow) CurrentWindow.DisableWindow();
+        if (CurrentWindow) CurrentWindow.DisableWindow();
         CurrentWindow = null;
         CurrentLerpPoint = null;
 
