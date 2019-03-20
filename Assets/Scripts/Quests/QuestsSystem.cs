@@ -59,60 +59,58 @@ public class QuestsSystem : MonoBehaviour
             GameManager.Instance.GUIcontroller.questsScreen.SelectQuest(number);
         }
     }
-
-    // void Update()
-    // {
-    //     if (Input.GetKeyDown(KeyCode.Space))
-    //     {
-    //         if (currentQuest.questNumber == 1) ShowQuest(2);
-    //         else if (currentQuest.questNumber == 2) ShowQuest(3);
-    //         else if (currentQuest.questNumber == 3) ShowQuest(4);
-    //         else if (currentQuest.questNumber == 4) ShowQuest(1);
-    //     }
-    //     if (Input.GetKeyDown(KeyCode.O))
-    //         currentQuest.questObjects.GetComponent<QuestComponent>().lerpToPlayer.CameraLerpTo();
-
-    //     if (Input.GetKeyDown(KeyCode.Escape))
-    //         {
-    //             GameManager.Instance.GUIcontroller.mainMenuController.ShowMainMenu(1);
-    //             GameManager.Instance.GUIcontroller.questsScreen.HideQuestsScreen();
-    //         }
-    // }
     public bool IsQuestLocked(int number)
     {
         if (!PlayerPrefs.HasKey("Quest" + number)) return true;
         return false;
     }
+    public void UnlockQuest(int number)
+    {
+        PlayerPrefs.SetInt("Quest" + number, 1);
+    }
+    public void CompleteQuest(int number)
+    {
+        PlayerPrefs.SetInt("Quest" + number, 2);
+        UnlockQuest(number + 1);
+    }
     private bool axisInUse = false;
     public void InputListener()
     {
-        float value = Input.GetAxis("Horizontal");
-
-        if (value < 0.03f && value > -0.03f) axisInUse = false;
-        if (!axisInUse)
+        if (GameManager.Instance.InputManager.GetKeyDown(InputManager.InputAction.menuPauza))
         {
+            GameManager.Instance.GUIcontroller.questsScreen.HideQuestsScreen();
+            GameManager.Instance.GUIcontroller.mainMenuController.ShowMainMenu(6);
+        }
+        else if (GameManager.Instance.InputManager.GetKeyDown(InputManager.InputAction.menuZatwierdz))
+        {
+            GameManager.Instance.PlayerStatesSystem.SetGameState("game");
+            currentQuest.questObjects.GetComponent<QuestComponent>().lerpToPlayer.CameraLerpTo();
+            GameManager.Instance.GUIcontroller.questsScreen.HideQuestsScreen();
+        }
+        else
+        {
+            float value = Input.GetAxis("Horizontal");
 
-            if (value > 0.03f)
+            if (value < 0.03f && value > -0.03f) axisInUse = false;
+            if (!axisInUse)
             {
-                axisInUse = true;
-                int nextActiveQuest = NextActiveQuestNumber();
-                if (nextActiveQuest > 0)
-                    ShowQuest(nextActiveQuest);
-            }
-            else if (value < -0.03f)
-            {
-                axisInUse = true;
-                int previousActiveQuest = PreviousActiveQuestNumber();
-                if (previousActiveQuest > 0)
-                    ShowQuest(previousActiveQuest);
+
+                if (value > 0.03f)
+                {
+                    axisInUse = true;
+                    int nextActiveQuest = NextActiveQuestNumber();
+                    if (nextActiveQuest > 0)
+                        ShowQuest(nextActiveQuest);
+                }
+                else if (value < -0.03f)
+                {
+                    axisInUse = true;
+                    int previousActiveQuest = PreviousActiveQuestNumber();
+                    if (previousActiveQuest > 0)
+                        ShowQuest(previousActiveQuest);
+                }
             }
         }
-
-        if(GameManager.Instance.InputManager.GetKeyDown(InputManager.InputAction.menuPauza))
-            {
-                GameManager.Instance.GUIcontroller.questsScreen.HideQuestsScreen();
-                GameManager.Instance.GUIcontroller.mainMenuController.ShowMainMenu(6);
-            }
     }
     private int NextActiveQuestNumber()
     {

@@ -18,7 +18,11 @@ public class MainMenuWindow : Window
         if (mainMenuController.CurrentLerpPoint != lerpTo)
         {
             mainMenuController.CurrentLerpPoint = lerpTo;
-            lerpTo.CameraLerpTo();
+            if (lerpTo) lerpTo.CameraLerpTo();
+            else
+            {
+                if (GameManager.Instance.GUIcontroller.mainMenuController.mainLerpPoint) GameManager.Instance.GUIcontroller.mainMenuController.mainLerpPoint.CameraLerpTo();
+            }
         }
     }
 }

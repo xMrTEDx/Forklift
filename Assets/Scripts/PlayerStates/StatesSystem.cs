@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityStandardAssets.Characters.FirstPerson;
 
-public class PlayerStatesSystem : MonoBehaviour
+public class StatesSystem : MonoBehaviour
 {
     public States playerState = States.none;
     public States PlayerState
@@ -48,21 +48,25 @@ public class PlayerStatesSystem : MonoBehaviour
 
     void Update()
     {
-        if (playerState == States.walking)
+        if (gameState == GameStates.game)
         {
-            MainPlayer.Instance.firstPersonController.PlayerCameraMove();
-        }
-        if (playerState == States.forklift)
-        {
-            if (ForkliftController.currentForklift)
-                ForkliftController.currentForklift.ForkliftStay();
-        }
-        if (playerState == States.forkliftSteering)
-        {
-            if (ForkliftController.currentForklift)
-                ForkliftController.currentForklift.ForkliftSteering();
-        }
+            GameManager.Instance.GUIcontroller.pauseMenuManager.InputListener();
 
+            if (playerState == States.walking)
+            {
+                MainPlayer.Instance.firstPersonController.PlayerCameraMove();
+            }
+            if (playerState == States.forklift)
+            {
+                if (ForkliftController.currentForklift)
+                    ForkliftController.currentForklift.ForkliftStay();
+            }
+            if (playerState == States.forkliftSteering)
+            {
+                if (ForkliftController.currentForklift)
+                    ForkliftController.currentForklift.ForkliftSteering();
+            }
+        }
 
 
 
@@ -70,7 +74,7 @@ public class PlayerStatesSystem : MonoBehaviour
         {
             GameManager.Instance.QuestsSystem.InputListener();
         }
-        if(gameState == GameStates.pressanykey)
+        if (gameState == GameStates.pressanykey)
         {
             GameManager.Instance.GUIcontroller.pressAnyKeyController.InputListener();
         }

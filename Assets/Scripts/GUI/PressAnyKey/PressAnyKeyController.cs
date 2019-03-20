@@ -26,7 +26,7 @@ public class PressAnyKeyController : MonoBehaviour
     {
         GameManager.Instance.PlayerStatesSystem.SetGameState("pressanykey");
 
-        lerpController.CameraLerpTo();
+        //lerpController.CameraLerpTo();
 
         AfterPressAction = afterPressAction;
 

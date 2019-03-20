@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using States = PlayerStatesSystem.States;
+using States = StatesSystem.States;
 
 public class InteractionIndicatorSystem : MonoBehaviour
 {

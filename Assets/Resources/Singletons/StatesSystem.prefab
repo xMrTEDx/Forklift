@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4202850379487756}
   - component: {fileID: 114625893785375132}
   m_Layer: 0
-  m_Name: PlayerStatesSystem
+  m_Name: StatesSystem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -51,6 +51,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f962e7cfcf1b5941b67a507fb75c086, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firstPersonController: {fileID: 0}
-  carriageSteering: {fileID: 0}
-  forkliftCameraController: {fileID: 0}
+  playerState: 0
+  gameState: 0

@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
-using States = PlayerStatesSystem.States;
+using States = StatesSystem.States;
 
 [RequireComponent(typeof(InteractionIndicatorComponent))]
 public class InteractionIndicatorControl : MonoBehaviour

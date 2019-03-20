@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour {
 
 	public InteractionIndicatorSystem IIsystem;
-	public PlayerStatesSystem PlayerStatesSystem;
+	public StatesSystem PlayerStatesSystem;
 	public InputManager InputManager;
 	public QuestsSystem QuestsSystem;
 
@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour {
 		PlayerStatesSystem.Init();
 		GUIcontroller.Init();
 		QuestsSystem.Init();
+		lerpSystem.Init();
 	}
 	public void ExitGame()
 	{

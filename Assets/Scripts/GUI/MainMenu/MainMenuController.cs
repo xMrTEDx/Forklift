@@ -48,6 +48,8 @@ public class MainMenuController : MonoBehaviour
         });
 
         mainLerpPoint.CameraLerpTo(afterLerpEvent);
+
+        Cursor.visible = true;
     }
     IEnumerator ShowMainMenuCoroutine(float speed)
     {
@@ -63,6 +65,8 @@ public class MainMenuController : MonoBehaviour
         canvasGroup.interactable = false;
         if (showhidecoroutine != null) StopCoroutine(showhidecoroutine);
         showhidecoroutine = StartCoroutine(HideMainMenuCoroutine(speed));
+
+        Cursor.visible = false;
     }
     IEnumerator HideMainMenuCoroutine(float speed)
     {

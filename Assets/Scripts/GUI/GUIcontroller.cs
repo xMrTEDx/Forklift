@@ -5,6 +5,7 @@ using UnityEngine;
 public class GUIcontroller : MonoBehaviour {
 
 	public MainMenuController mainMenuController;
+	public PauseMenuManager pauseMenuManager;
 	public BlackoutController blackoutController;
 	public QuestsScreenController questsScreen;
 	public PressAnyKeyController pressAnyKeyController;
@@ -16,5 +17,7 @@ public class GUIcontroller : MonoBehaviour {
 		blackoutController.Init();
 
 		pressAnyKeyController.Init();
+
+		pauseMenuManager.Init();
 	}
 }
