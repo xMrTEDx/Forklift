@@ -17,6 +17,7 @@ public class CarriageSteering : MonoBehaviour {
 
 
 
+
 	// Use this for initialization
 	void Start () {
 		forkliftComponent = GetComponent<ForkliftComponent>();
@@ -29,7 +30,7 @@ public class CarriageSteering : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	public void ForkliftSteering () {
+	public void CarriageMove () {
 		
 		SetCarriageLocation();
 		SetMastRotation();
@@ -45,6 +46,7 @@ public class CarriageSteering : MonoBehaviour {
 
 		float limitedLeftRight = UseLimits(Limits.leftRight,karetkaCurrentLocal.x);
 		float limitedUpDown = UseLimits(Limits.downUp,karetkaCurrentLocal.y);
+
 
 		forkliftComponent.karetka.transform.localPosition = new Vector3(limitedLeftRight,limitedUpDown,0) + karetkaDefaultLocalPosition;
 	}

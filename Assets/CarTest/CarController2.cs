@@ -2,7 +2,7 @@
 using UnityEngine.UI;
 using System.Collections;
 
-public class CarController : MonoBehaviour
+public class CarController2 : MonoBehaviour
 {
 
     public float idealRPM = 500f;
@@ -44,7 +44,7 @@ public class CarController : MonoBehaviour
         return wheelRL.rpm;
     }
 
-    void FixedUpdate()
+    public void FixedUpdate()
     {
 
         if (speedText != null)
@@ -52,15 +52,15 @@ public class CarController : MonoBehaviour
 
         //Debug.Log ("Speed: " + (wheelRR.radius * Mathf.PI * wheelRR.rpm * 60f / 1000f) + "km/h    RPM: " + wheelRL.rpm);
 
-        float scaledTorque = Input.GetAxis("Vertical") * torque;
+        // float scaledTorque = Input.GetAxis("Vertical") * torque;
 
-        if (wheelRL.rpm < idealRPM)
-            scaledTorque = Mathf.Lerp(scaledTorque / 10f, scaledTorque, wheelRL.rpm / idealRPM);
-        else
-            scaledTorque = Mathf.Lerp(scaledTorque, 0, (wheelRL.rpm - idealRPM) / (maxRPM - idealRPM));
+        // if (wheelRL.rpm < idealRPM)
+        //     scaledTorque = Mathf.Lerp(scaledTorque / 10f, scaledTorque, wheelRL.rpm / idealRPM);
+        // else
+        //     scaledTorque = Mathf.Lerp(scaledTorque, 0, (wheelRL.rpm - idealRPM) / (maxRPM - idealRPM));
 
-        DoRollBar(wheelFR, wheelFL);
-        DoRollBar(wheelRR, wheelRL);
+        //DoRollBar(wheelFR, wheelFL);
+        //DoRollBar(wheelRR, wheelRL);
 
         steeringInput += Input.GetAxis("Horizontal") * Time.deltaTime * steeringSpeed;
         steeringInput = Normalize(steeringInput);
@@ -68,25 +68,25 @@ public class CarController : MonoBehaviour
         wheelFR.steerAngle = -steeringInput;
         wheelFL.steerAngle = -steeringInput;
 
-        wheelFR.motorTorque = driveMode == DriveMode.Rear ? 0 : scaledTorque;
-        wheelFL.motorTorque = driveMode == DriveMode.Rear ? 0 : scaledTorque;
-        wheelRR.motorTorque = driveMode == DriveMode.Front ? 0 : scaledTorque;
-        wheelRL.motorTorque = driveMode == DriveMode.Front ? 0 : scaledTorque;
+        // wheelFR.motorTorque = driveMode == DriveMode.Rear ? 0 : scaledTorque;
+        // wheelFL.motorTorque = driveMode == DriveMode.Rear ? 0 : scaledTorque;
+        // wheelRR.motorTorque = driveMode == DriveMode.Front ? 0 : scaledTorque;
+        // wheelRL.motorTorque = driveMode == DriveMode.Front ? 0 : scaledTorque;
 
-        if (Input.GetButton("Fire1"))
-        {
-            wheelFR.brakeTorque = brakeTorque;
-            wheelFL.brakeTorque = brakeTorque;
-            wheelRR.brakeTorque = brakeTorque;
-            wheelRL.brakeTorque = brakeTorque;
-        }
-        else
-        {
-            wheelFR.brakeTorque = 0;
-            wheelFL.brakeTorque = 0;
-            wheelRR.brakeTorque = 0;
-            wheelRL.brakeTorque = 0;
-        }
+        // if (Input.GetButton("Fire1"))
+        // {
+        //     wheelFR.brakeTorque = brakeTorque;
+        //     wheelFL.brakeTorque = brakeTorque;
+        //     wheelRR.brakeTorque = brakeTorque;
+        //     wheelRL.brakeTorque = brakeTorque;
+        // }
+        // else
+        // {
+        //     wheelFR.brakeTorque = 0;
+        //     wheelFL.brakeTorque = 0;
+        //     wheelRR.brakeTorque = 0;
+        //     wheelRL.brakeTorque = 0;
+        // }
     }
 
 

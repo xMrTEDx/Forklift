@@ -6,7 +6,7 @@ public class TireToWheel : MonoBehaviour {
 	public WheelCollider wheelCollider;
 
 	void Start() {
-		wheelCollider.GetComponent<ParticleSystem>().emissionRate = 500;
+		//wheelCollider.GetComponent<ParticleSystem>().emissionRate = 500;
 	}
 
 	void FixedUpdate () {
@@ -35,10 +35,10 @@ public class TireToWheel : MonoBehaviour {
 					Mathf.Abs(hit.forwardSlip) >= wheelCollider.forwardFriction.extremumSlip || 
 					Mathf.Abs(hit.sidewaysSlip) >= wheelCollider.sidewaysFriction.extremumSlip
 				) {
-				wheelCollider.GetComponent<ParticleSystem>().enableEmission = true;
+				//wheelCollider.GetComponent<ParticleSystem>().enableEmission = true;
 			}
 			else {
-				wheelCollider.GetComponent<ParticleSystem>().enableEmission = false;
+				//wheelCollider.GetComponent<ParticleSystem>().enableEmission = false;
 			}
 
 
@@ -47,7 +47,7 @@ public class TireToWheel : MonoBehaviour {
 			// no contact with ground, just extend wheel position with suspension distance
 			
 			localPosition = Vector3.Lerp (localPosition, -Vector3.up * collider.suspensionDistance, .05f);
-			wheelCollider.GetComponent<ParticleSystem>().enableEmission = false;
+			//wheelCollider.GetComponent<ParticleSystem>().enableEmission = false;
 
 		}
 		
@@ -55,7 +55,7 @@ public class TireToWheel : MonoBehaviour {
 		
 		wheelTransform.localPosition = localPosition;
 
-		wheelTransform.localRotation = Quaternion.Euler(0, collider.steerAngle, 90);
+		wheelTransform.localRotation = Quaternion.Euler(0, collider.steerAngle, 0);
 		
 	}
 

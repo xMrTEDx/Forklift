@@ -17,8 +17,8 @@ MonoBehaviour:
     rotationAxis: Mouse ScrollWheel
     lights: 0
     goDownSpeed: 1
-    leftRightSpeed: 1
-    rotationSpeed: 1
+    leftRightSpeed: 0.5
+    rotationSpeed: 0.03
   limitsSettings:
     leftRightLimit: 0.5
     downLimit: -0.1

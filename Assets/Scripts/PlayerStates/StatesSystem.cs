@@ -59,11 +59,6 @@ public class StatesSystem : MonoBehaviour
             if (playerState == States.forklift)
             {
                 if (ForkliftController.currentForklift)
-                    ForkliftController.currentForklift.ForkliftStay();
-            }
-            if (playerState == States.forkliftSteering)
-            {
-                if (ForkliftController.currentForklift)
                     ForkliftController.currentForklift.ForkliftSteering();
             }
         }
@@ -93,7 +88,6 @@ public class StatesSystem : MonoBehaviour
         walking,
         playerAnimation,
         forklift,
-        forkliftSteering,
         lerpTo
     }
     public enum GameStates

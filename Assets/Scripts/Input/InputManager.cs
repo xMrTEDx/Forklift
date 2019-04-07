@@ -9,6 +9,7 @@ public class InputManager : MonoBehaviour
     [Header("ZdefiniowaneInputy")]
 
     public List<SimpleInput> listaInputow;
+    public List<SimpleInputAxis> listaOsi;
 
 
     ////////////////////////////
@@ -17,6 +18,10 @@ public class InputManager : MonoBehaviour
 
     public enum InputAction
     {
+        karetkaLewo,
+        karetkaPrawo,
+        karetkaGoraDol,
+        masztPochylenie,
         menuZatwierdz,
         menuPowrot,
         menuPauza,
@@ -64,6 +69,22 @@ public class InputManager : MonoBehaviour
                 {
                     if (Input.GetKeyDown(button)) value = 1;
                     break;
+                }
+                foreach (var axis in item.osie)
+                {
+                    value = Input.GetAxis(axis);
+                }
+            }
+        }
+        
+        foreach (var item in listaOsi)
+        {
+            if (item.inputAction == inputAction)
+            {
+                foreach (var button in item.przyciski)
+                {
+                    if (Input.GetKeyDown(button.wartoscDodatnia)) value = 1;
+                    if(Input.GetKeyDown(button.wartoscUjemna)) value -= 1;
                 }
                 foreach (var axis in item.osie)
                 {

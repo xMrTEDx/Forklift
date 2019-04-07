@@ -69,6 +69,7 @@ public class InteractionIndicatorControl : MonoBehaviour
 
     public void OnAreaEnter()
     {
+        Debug.Log("Area");
         interactionComponent.iiPoint.SetActive(true);
         interactionComponent.iiPointE.SetActive(true);
         interactionComponent.iiPoint_SR.enabled = true;
@@ -84,6 +85,7 @@ public class InteractionIndicatorControl : MonoBehaviour
     //////////////////////////////////////////////////////////
     public void OnInteractionAreaEnter()
     {
+        Debug.Log("Interaction Area");
         interactionIndicatorEvents.e_OnInteractionAreaEnter.Invoke();
     }
     public void OnInteractionAreaExit()
@@ -109,7 +111,7 @@ public class InteractionIndicatorControl : MonoBehaviour
             Vector3 dirFromMeToObject = (interactionPointPosition - Camera.main.transform.position).normalized;
             Vector3 myCurrentFacingDir = Camera.main.transform.forward;
 
-            if (Vector3.Dot(dirFromMeToObject, myCurrentFacingDir) > 0.99)
+            if (Vector3.Dot(dirFromMeToObject, myCurrentFacingDir) > 0.95)
             {
                 if (currentHighlightedII == null)
                 {

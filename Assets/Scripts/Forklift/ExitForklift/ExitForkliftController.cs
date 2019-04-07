@@ -8,25 +8,31 @@ public class ExitForkliftController : MonoBehaviour
 
     public UnityEvent e_Exit_Left = new UnityEvent();
     public UnityEvent e_Exit_Right = new UnityEvent();
-	[Space]
-	[Space]
-	public Exit_Left_Trigger exit_Left_Trigger;
-	public Exit_Right_Trigger exit_Right_Trigger;
+    [Space]
+    [Space]
+    public Exit_Left_Trigger exit_Left_Trigger;
+    public Exit_Right_Trigger exit_Right_Trigger;
 
     void Update()
     {
-		//Debug.Log("LEFT: "+exit_Left_Trigger.anyCollidersInsideTrigger()+"     RIGHT: "+exit_Right_Trigger.anyCollidersInsideTrigger());
-        if (GameManager.Instance.PlayerStatesSystem.PlayerState == StatesSystem.States.forklift)
+        //Debug.Log("LEFT: "+exit_Left_Trigger.anyCollidersInsideTrigger()+"     RIGHT: "+exit_Right_Trigger.anyCollidersInsideTrigger());
+        if (GameManager.Instance.PlayerStatesSystem.PlayerState == StatesSystem.States.forklift && ForkliftController.currentForklift != null)
         {
             if (Input.GetKeyDown(KeyCode.X))
             {
-                if(exit_Left_Trigger.anyCollidersInsideTrigger())
-					e_Exit_Left.Invoke();
+                if (exit_Left_Trigger.anyCollidersInsideTrigger())
+                {
+                    e_Exit_Left.Invoke();
+                    ForkliftController.currentForklift.GetDownForklift();
+                }
             }
             if (Input.GetKeyDown(KeyCode.C))
             {
-                if(exit_Right_Trigger.anyCollidersInsideTrigger())
-					e_Exit_Right.Invoke();
+                if (exit_Right_Trigger.anyCollidersInsideTrigger())
+                {
+                    e_Exit_Right.Invoke();
+                    ForkliftController.currentForklift.GetDownForklift();
+                }
             }
         }
     }
