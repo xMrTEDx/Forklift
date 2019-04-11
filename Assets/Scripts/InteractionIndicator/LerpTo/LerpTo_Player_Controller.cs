@@ -9,7 +9,7 @@ public class LerpTo_Player_Controller : MonoBehaviour {
 	public float lerpSpeed = 2.2f;
 	public UnityEvent e_OnLerpFinished = new UnityEngine.Events.UnityEvent();
 	
-	public void PlayerLerpTo()
+	/*public void PlayerLerpTo()
 	{
 		GameManager.Instance.PlayerStatesSystem.SetPlayerState("None");
 
@@ -38,7 +38,7 @@ public class LerpTo_Player_Controller : MonoBehaviour {
 
 		yield return null;
 		
-	}
+	}*/
 	
 	void OnDrawGizmos()
     {

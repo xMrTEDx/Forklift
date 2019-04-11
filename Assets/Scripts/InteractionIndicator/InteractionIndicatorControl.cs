@@ -120,7 +120,7 @@ public class InteractionIndicatorControl : MonoBehaviour
                 }
 
                 if (currentHighlightedII == this)
-                    if (Input.GetKeyDown(KeyCode.E))
+                    if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.JoystickButton0))
                         OnInteraction();
             }
             else

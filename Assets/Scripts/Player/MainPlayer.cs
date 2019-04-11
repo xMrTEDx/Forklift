@@ -2,20 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MainPlayer : Singleton<MainPlayer> {
+public class MainPlayer : MonoBehaviour {
 	public UnityStandardAssets.Characters.FirstPerson.FirstPersonController firstPersonController;
 	public GameObject character;
-	public GameObject camera;
+	public static MainPlayer currentPlayer;
+	//public GameObject camera;
 
 	public void DisablePlayer()
 	{
-		//character.SetActive(false);
+		gameObject.SetActive(false);
 	}
 	public void EnablePlayer()
 	{
-		//character.SetActive(true);
-		//Camera.SetupCurrent(character.GetComponent<Camera>());
-		camera.transform.rotation = new Quaternion(0,0,0,0);
+		gameObject.SetActive(true);
+		currentPlayer = this;
+		Camera.main.transform.localRotation = Quaternion.identity;
 		GameManager.Instance.PlayerStatesSystem.SetPlayerState("walking");
 		
 	}

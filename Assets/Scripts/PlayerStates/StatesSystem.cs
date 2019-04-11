@@ -24,6 +24,9 @@ public class StatesSystem : MonoBehaviour
             {
                 playerState = st;
                 Debug.Log("Set player state to: " + st.ToString());
+
+                if (st == States.forklift && MainPlayer.currentPlayer != null)
+                    MainPlayer.currentPlayer.DisablePlayer();
             }
         }
 
@@ -54,7 +57,7 @@ public class StatesSystem : MonoBehaviour
 
             if (playerState == States.walking)
             {
-                MainPlayer.Instance.firstPersonController.PlayerCameraMove();
+                MainPlayer.currentPlayer.firstPersonController.PlayerCameraMove();
             }
             if (playerState == States.forklift)
             {
@@ -79,7 +82,7 @@ public class StatesSystem : MonoBehaviour
     void FixedUpdate()
     {
         if (playerState == States.walking)
-            MainPlayer.Instance.firstPersonController.PlayerWalking();
+            MainPlayer.currentPlayer.firstPersonController.PlayerWalking();
     }
 
     public enum States

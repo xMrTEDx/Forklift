@@ -51,7 +51,7 @@ public class QuestsSystem : MonoBehaviour
             quest.lerpToQuestCamera.CameraLerpTo();
 
             if (currentQuest != null && currentQuest.questObjects != null) Destroy(currentQuest.questObjects);
-            GameObject clone = Instantiate(quest.QuestObjects, currentQuestParent.transform, true);
+            GameObject clone = Instantiate(quest.QuestObjects, currentQuestParent.transform, false);
             clone.SetActive(true);
             currentQuest = new QuestData(number, quest, clone);
 
