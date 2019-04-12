@@ -62,7 +62,10 @@ public class StatesSystem : MonoBehaviour
             if (playerState == States.forklift)
             {
                 if (ForkliftController.currentForklift)
-                    ForkliftController.currentForklift.ForkliftSteering();
+                    {
+                        ForkliftController.currentForklift.ForkliftSteering();
+                        ForkliftController.currentForklift.forkliftComponent.exitForkliftController.InputListener();
+                    }
             }
         }
 

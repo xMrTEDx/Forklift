@@ -41,8 +41,7 @@ public class ForkliftController : MonoBehaviour
     }
     public void GetDownForklift()
     {
-		forkliftComponent.forkliftCameraController.transform.localRotation = cameraDefaultRot;
-        currentForklift = null;
+		currentForklift = null;
     }
 
 

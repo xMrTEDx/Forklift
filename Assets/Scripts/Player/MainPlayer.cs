@@ -16,8 +16,13 @@ public class MainPlayer : MonoBehaviour {
 	{
 		gameObject.SetActive(true);
 		currentPlayer = this;
+		GameManager.Instance.playerManager.SetPlayer(gameObject);
 		Camera.main.transform.localRotation = Quaternion.identity;
 		GameManager.Instance.PlayerStatesSystem.SetPlayerState("walking");
-		
+		if(ForkliftController.currentForklift) 
+		{
+			ForkliftController.currentForklift.forkliftComponent.forkliftCameraController.ResetCameraRotation();
+			ForkliftController.currentForklift.GetDownForklift();
+		}
 	}
 }

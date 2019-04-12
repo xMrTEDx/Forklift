@@ -81,36 +81,36 @@ public class QuestsSystem : MonoBehaviour
             GameManager.Instance.GUIcontroller.questsScreen.HideQuestsScreen();
             GameManager.Instance.GUIcontroller.mainMenuController.ShowMainMenu(6);
         }
-        else if (GameManager.Instance.InputManager.GetKeyDown(InputManager.InputAction.menuZatwierdz))
-        {
-            GameManager.Instance.PlayerStatesSystem.SetGameState("game");
-            currentQuest.questObjects.GetComponent<QuestComponent>().lerpToPlayer.CameraLerpTo();
-            GameManager.Instance.GUIcontroller.questsScreen.HideQuestsScreen();
-        }
-        else
-        {
-            float value = Input.GetAxis("Horizontal");
+        // else if (GameManager.Instance.InputManager.GetKeyDown(InputManager.InputAction.menuZatwierdz))
+        // {
+        //     GameManager.Instance.PlayerStatesSystem.SetGameState("game");
+        //     currentQuest.questObjects.GetComponent<QuestComponent>().lerpToPlayer.CameraLerpTo();
+        //     GameManager.Instance.GUIcontroller.questsScreen.HideQuestsScreen();
+        // }
+        // else
+        // {
+        //     float value = Input.GetAxis("Horizontal");
 
-            if (value < 0.03f && value > -0.03f) axisInUse = false;
-            if (!axisInUse)
-            {
+        //     if (value < 0.03f && value > -0.03f) axisInUse = false;
+        //     if (!axisInUse)
+        //     {
 
-                if (value > 0.03f)
-                {
-                    axisInUse = true;
-                    int nextActiveQuest = NextActiveQuestNumber();
-                    if (nextActiveQuest > 0)
-                        ShowQuest(nextActiveQuest);
-                }
-                else if (value < -0.03f)
-                {
-                    axisInUse = true;
-                    int previousActiveQuest = PreviousActiveQuestNumber();
-                    if (previousActiveQuest > 0)
-                        ShowQuest(previousActiveQuest);
-                }
-            }
-        }
+        //         if (value > 0.03f)
+        //         {
+        //             axisInUse = true;
+        //             int nextActiveQuest = NextActiveQuestNumber();
+        //             if (nextActiveQuest > 0)
+        //                 ShowQuest(nextActiveQuest);
+        //         }
+        //         else if (value < -0.03f)
+        //         {
+        //             axisInUse = true;
+        //             int previousActiveQuest = PreviousActiveQuestNumber();
+        //             if (previousActiveQuest > 0)
+        //                 ShowQuest(previousActiveQuest);
+        //         }
+        //     }
+        // }
     }
     private int NextActiveQuestNumber()
     {

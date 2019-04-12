@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Linq;
 
 public class QuestsScreenController : MonoBehaviour
 {
@@ -28,7 +29,7 @@ public class QuestsScreenController : MonoBehaviour
     }
     public void SelectQuest(int i)
     {
-        //Debug.Log("Select diamond number: " + i);
+        Debug.Log("Select diamond number: " + i);
         if (i <= diamonds.Count && i > 0)
         {
             DeselectQuest(currentSelectedDiamond);
@@ -65,7 +66,18 @@ public class QuestsScreenController : MonoBehaviour
             else newDiamond = Instantiate(lockerExample, zadania.transform, true);
             diamonds.Add(newDiamond);
             newDiamond.SetActive(true);
+
+            newDiamond.GetComponent<ButtonQuests>().questNumber = i + 1;
+
+            newDiamond.GetComponent<Button>().onClick.AddListener(() =>
+            {
+                GameManager.Instance.PlayerStatesSystem.SetGameState("game");
+                GameManager.Instance.QuestsSystem.currentQuest.questObjects.GetComponent<QuestComponent>().lerpToPlayer.CameraLerpTo();
+                GameManager.Instance.GUIcontroller.questsScreen.HideQuestsScreen();
+            });
         }
+
+        diamonds[0].GetComponent<Selectable>().Select();
     }
-    
+
 }

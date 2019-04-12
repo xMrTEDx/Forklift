@@ -3385,7 +3385,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1971852289117772}
   m_LocalRotation: {x: -0, y: 0.70712376, z: -0, w: 0.7070899}
-  m_LocalPosition: {x: 1.1569998, y: 0.8439999, z: 0.222}
+  m_LocalPosition: {x: 1.5, y: 0.8439999, z: 0.222}
   m_LocalScale: {x: 1.0000004, y: 0.9999998, z: 0.99999934}
   m_Children:
   - {fileID: 4507746614681582}
@@ -4625,7 +4625,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1511550813914748}
   m_LocalRotation: {x: -0, y: -0.7070896, z: -0, w: 0.707124}
-  m_LocalPosition: {x: -1.176, y: 0.844, z: 0.222}
+  m_LocalPosition: {x: -1.5, y: 0.844, z: 0.222}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4575440758122646}
@@ -11252,8 +11252,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 114344071254103106}
-        m_MethodName: CameraLerpTo
+      - m_Target: {fileID: 0}
+        m_MethodName: PlayerLerpTo
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -11279,8 +11279,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 114114476713603644}
-        m_MethodName: CameraLerpTo
+      - m_Target: {fileID: 0}
+        m_MethodName: PlayerLerpTo
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -11371,8 +11371,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 114421618279081418}
-        m_MethodName: SetPlayerPosition
+      - m_Target: {fileID: 0}
+        m_MethodName: PlayerLerpTo
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -11600,7 +11600,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 0}
-        m_MethodName: EnablePlayer
+        m_MethodName: PlayerLerpTo
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -11670,6 +11670,7 @@ MonoBehaviour:
   karetka: {fileID: 1220308294082100}
   maszt: {fileID: 1285262878970452}
   forkliftIIsystem: {fileID: 114363246917404552}
+  exitForkliftController: {fileID: 114095021461059856}
 --- !u!114 &114401909621256222
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11863,8 +11864,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forkliftDownUp_Transform: {fileID: 1575580990527532}
-  sensivityX: 2
-  sensivityY: 2
+  defaultRot: {x: 0, y: 0, z: 0, w: 0}
+  sensivityX: 50
+  sensivityY: 50
 --- !u!114 &114703886190637440
 MonoBehaviour:
   m_ObjectHideFlags: 1

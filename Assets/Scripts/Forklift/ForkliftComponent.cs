@@ -9,4 +9,5 @@ public class ForkliftComponent : MonoBehaviour {
 	public GameObject karetka;
 	public GameObject maszt;
 	public ForkliftIIsystem forkliftIIsystem;
+	public ExitForkliftController exitForkliftController;
 }

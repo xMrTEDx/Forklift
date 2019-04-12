@@ -13,26 +13,37 @@ public class ExitForkliftController : MonoBehaviour
     public Exit_Left_Trigger exit_Left_Trigger;
     public Exit_Right_Trigger exit_Right_Trigger;
 
-    void Update()
+    public void InputListener()
     {
         //Debug.Log("LEFT: "+exit_Left_Trigger.anyCollidersInsideTrigger()+"     RIGHT: "+exit_Right_Trigger.anyCollidersInsideTrigger());
         if (GameManager.Instance.PlayerStatesSystem.PlayerState == StatesSystem.States.forklift && ForkliftController.currentForklift != null)
         {
+
             if (Input.GetKeyDown(KeyCode.X))
             {
-                if (exit_Left_Trigger.anyCollidersInsideTrigger())
+                if (Mathf.Abs(ForkliftController.currentForklift.forkliftSteering.Speed()) <= 0.02f)
                 {
-                    e_Exit_Left.Invoke();
-                    ForkliftController.currentForklift.GetDownForklift();
+                    if (exit_Left_Trigger.anyCollidersInsideTrigger())
+                    {
+                        e_Exit_Left.Invoke();
+                        //ForkliftController.currentForklift.GetDownForklift();
+                    }
                 }
+                else
+                    Prompt.Instance.ShowPrompt("Nie możesz wysiąść z wózka podczas jazdy");
             }
             if (Input.GetKeyDown(KeyCode.C))
             {
-                if (exit_Right_Trigger.anyCollidersInsideTrigger())
+                if (Mathf.Abs(ForkliftController.currentForklift.forkliftSteering.Speed()) <= 0.02f)
                 {
-                    e_Exit_Right.Invoke();
-                    ForkliftController.currentForklift.GetDownForklift();
+                    if (exit_Right_Trigger.anyCollidersInsideTrigger())
+                    {
+                        e_Exit_Right.Invoke();
+                        //ForkliftController.currentForklift.GetDownForklift();
+                    }
                 }
+                else
+                    Prompt.Instance.ShowPrompt("Nie możesz wysiąść z wózka podczas jazdy");
             }
         }
     }

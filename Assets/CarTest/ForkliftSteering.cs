@@ -39,6 +39,7 @@ public class ForkliftSteering : MonoBehaviour
     {
         rb = gameObject.GetComponent<Rigidbody>();
         rb.centerOfMass = centerOfGravity.localPosition;
+        SetsteeringWheelRotation();
     }
 
     public float Speed()
@@ -121,7 +122,7 @@ public class ForkliftSteering : MonoBehaviour
         wheelRR.steerAngle = -steeringInput;
         wheelRL.steerAngle = -steeringInput;
 
-        Debug.Log(wheelFR.rpm + "\t" + wheelFL.rpm + "\t" + wheelRR.rpm + "\t" + wheelRL.rpm);
+        //Debug.Log(wheelFR.rpm + "\t" + wheelFL.rpm + "\t" + wheelRR.rpm + "\t" + wheelRL.rpm);
 
         SetsteeringWheelRotation();
 

@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour {
 
 	public GUIcontroller GUIcontroller;
 	public LerpSystem lerpSystem;
+	public PlayerManager playerManager;
 
     private static GameManager instance;
 

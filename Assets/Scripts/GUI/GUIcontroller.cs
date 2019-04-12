@@ -9,6 +9,7 @@ public class GUIcontroller : MonoBehaviour {
 	public BlackoutController blackoutController;
 	public QuestsScreenController questsScreen;
 	public PressAnyKeyController pressAnyKeyController;
+	public InfoBoxManager InfoBoxManager;
 
 	public void Init()
 	{
@@ -19,5 +20,6 @@ public class GUIcontroller : MonoBehaviour {
 		pressAnyKeyController.Init();
 
 		pauseMenuManager.Init();
+		InfoBoxManager.Init();
 	}
 }

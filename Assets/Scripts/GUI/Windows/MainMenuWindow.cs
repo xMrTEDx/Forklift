@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using System.Linq;
 
 public class MainMenuWindow : Window
 {
@@ -24,5 +26,7 @@ public class MainMenuWindow : Window
                 if (GameManager.Instance.GUIcontroller.mainMenuController.mainLerpPoint) GameManager.Instance.GUIcontroller.mainMenuController.mainLerpPoint.CameraLerpTo();
             }
         }
+        Button btn = GetComponentsInChildren<Button>().FirstOrDefault();
+        if(btn) btn.Select();
     }
 }
