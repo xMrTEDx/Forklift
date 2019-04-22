@@ -131,6 +131,12 @@ public class ForkliftSteering : MonoBehaviour
             holdBreakTimer = 0;
             gear = gear == Gear.d ? Gear.r : Gear.d;
         }
+
+        if (ForkliftController.currentForklift != null)
+        {
+            float bieg = gear == Gear.d ? -1 : 1;
+            ForkliftController.currentForklift.forkliftComponent.sterowanieDzwigniami.UstawPolozenieDzwigni(bieg);
+        }
     }
 
 

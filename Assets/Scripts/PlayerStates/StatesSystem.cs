@@ -64,6 +64,9 @@ public class StatesSystem : MonoBehaviour
                 if (ForkliftController.currentForklift)
                     {
                         ForkliftController.currentForklift.ForkliftSteering();
+                        if(!ForkliftController.currentForklift) Debug.Log("Elo nie ma wozka");
+                        if(!ForkliftController.currentForklift.forkliftComponent) Debug.Log("Elo nie ma componentow");
+                        if(!ForkliftController.currentForklift.forkliftComponent.exitForkliftController) Debug.Log("Elo nie ma exit componentu");
                         ForkliftController.currentForklift.forkliftComponent.exitForkliftController.InputListener();
                     }
             }

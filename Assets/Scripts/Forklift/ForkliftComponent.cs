@@ -10,4 +10,5 @@ public class ForkliftComponent : MonoBehaviour {
 	public GameObject maszt;
 	public ForkliftIIsystem forkliftIIsystem;
 	public ExitForkliftController exitForkliftController;
+	public SterowanieDzwigniami sterowanieDzwigniami;
 }

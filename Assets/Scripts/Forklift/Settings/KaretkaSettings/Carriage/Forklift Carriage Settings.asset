@@ -22,6 +22,6 @@ MonoBehaviour:
   limitsSettings:
     leftRightLimit: 0.5
     downLimit: -0.1
-    upLimit: 1.8
+    upLimit: 4
     forwardDegreeLimit: 5
     backwardDegreeLimit: -10
