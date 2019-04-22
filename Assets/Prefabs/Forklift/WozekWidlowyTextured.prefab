@@ -12382,7 +12382,7 @@ MonoBehaviour:
   wheelFL: {fileID: 146129545013735626}
   wheelRR: {fileID: 146755435385522324}
   wheelRL: {fileID: 146276308260174558}
-  turnRadius: 90
+  turnRadius: 85
   torque: 5000
   brakeTorque: 100000
   brakeForce: 2000
