@@ -39,9 +39,11 @@ public class CarriageSteering : MonoBehaviour
     // Update is called once per frame
     public void CarriageMove()
     {
-
-        SetCarriageLocation();
-        SetMastRotation();
+        if (ForkliftController.currentForklift.forkliftSteering.silnikUruchomiony)
+        {
+            SetCarriageLocation();
+            SetMastRotation();
+        }
     }
     void SetCarriageLocation()
     {

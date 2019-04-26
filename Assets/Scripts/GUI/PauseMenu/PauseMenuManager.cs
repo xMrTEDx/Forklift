@@ -10,10 +10,10 @@ public class PauseMenuManager : MonoBehaviour
 
     public Window mainWindow;
 
-	public void Init()
-	{
-		
-	}
+    public void Init()
+    {
+
+    }
 
     private void MenuOn()
     {
@@ -50,7 +50,7 @@ public class PauseMenuManager : MonoBehaviour
 
     public void InputListener()
     {
-        if (GameManager.Instance.InputManager.GetKeyDown(InputManager.InputAction.menuPauza))
+        if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.JoystickButton7))
         {
             OnMenuStatusChange();
         }

@@ -19,7 +19,7 @@ public class ExitForkliftController : MonoBehaviour
         if (GameManager.Instance.PlayerStatesSystem.PlayerState == StatesSystem.States.forklift && ForkliftController.currentForklift != null)
         {
 
-            if (Input.GetKeyDown(KeyCode.X))
+            if (Input.GetKeyDown(KeyCode.X) || Input.GetKeyDown(KeyCode.JoystickButton2))
             {
                 if (Mathf.Abs(ForkliftController.currentForklift.forkliftSteering.Speed()) <= 0.02f)
                 {
@@ -32,7 +32,7 @@ public class ExitForkliftController : MonoBehaviour
                 else
                     Prompt.Instance.ShowPrompt("Nie możesz wysiąść z wózka podczas jazdy");
             }
-            if (Input.GetKeyDown(KeyCode.C))
+            if (Input.GetKeyDown(KeyCode.C) || Input.GetKeyDown(KeyCode.JoystickButton1))
             {
                 if (Mathf.Abs(ForkliftController.currentForklift.forkliftSteering.Speed()) <= 0.02f)
                 {

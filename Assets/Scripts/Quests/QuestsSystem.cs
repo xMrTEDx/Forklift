@@ -15,6 +15,7 @@ public class QuestsSystem : MonoBehaviour
         public int questNumber;
         public Quest quest;
         public GameObject questObjects;
+        public bool ukonczone = false;
         public QuestData(int qn, Quest q, GameObject qo)
         {
             questNumber = qn; quest = q; questObjects = qo;
@@ -23,6 +24,14 @@ public class QuestsSystem : MonoBehaviour
 
     public void Init()
     {
+        if (PlayerPrefs.HasKey("Quest1"))
+            PlayerPrefs.DeleteKey("Quest1");
+        if (PlayerPrefs.HasKey("Quest2"))
+            PlayerPrefs.DeleteKey("Quest2");
+        if (PlayerPrefs.HasKey("Quest3"))
+            PlayerPrefs.DeleteKey("Quest3");
+        if (PlayerPrefs.HasKey("Quest4"))
+            PlayerPrefs.DeleteKey("Quest4");
         foreach (var item in quests)
         {
             item.Init(this);
@@ -72,6 +81,11 @@ public class QuestsSystem : MonoBehaviour
     {
         PlayerPrefs.SetInt("Quest" + number, 2);
         UnlockQuest(number + 1);
+        currentQuest.ukonczone = true;
+    }
+    public void CompleteCurrentQuest()
+    {
+        CompleteQuest(currentQuest.questNumber);
     }
     private bool axisInUse = false;
     public void InputListener()

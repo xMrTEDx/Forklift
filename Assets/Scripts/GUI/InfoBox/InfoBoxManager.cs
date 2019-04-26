@@ -5,22 +5,25 @@ using UnityEngine.UI;
 
 public class InfoBoxManager : MonoBehaviour
 {
-	public Text text;
-	public Button closeButton;
-    public void ShowInfo(string message)
+    public Text text;
+    public Button closeButton;
+    public void ShowInfo(InfoBoxSimple infoBox)
     {
-        text.text = message;
+        text.text = infoBox.message;
         gameObject.SetActive(true);
         Time.timeScale = 0;
-		closeButton.Select();
+        
+        closeButton.onClick.RemoveAllListeners();
+        closeButton.onClick.AddListener(() => { HideInfo(); infoBox.e_OnCloseInfoBoxAction.Invoke(); });
+        closeButton.Select();
     }
     public void HideInfo()
     {
         gameObject.SetActive(false);
         Time.timeScale = 1;
     }
-	public void Init()
-	{
-		gameObject.SetActive(false);
-	}
+    public void Init()
+    {
+        gameObject.SetActive(false);
+    }
 }

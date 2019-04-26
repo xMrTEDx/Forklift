@@ -37,7 +37,7 @@ public class QuestsScreenController : MonoBehaviour
             diamonds[i - 1].transform.localScale = new Vector3(1.6f, 1.6f, 1.6f);
             currentSelectedDiamond = i;
 
-            //opis.text = description;
+            opis.text = GameManager.Instance.QuestsSystem.quests[i - 1].description;
         }
 
     }
@@ -67,16 +67,18 @@ public class QuestsScreenController : MonoBehaviour
             diamonds.Add(newDiamond);
             newDiamond.SetActive(true);
 
-            newDiamond.GetComponent<ButtonQuests>().questNumber = i + 1;
-
-            newDiamond.GetComponent<Button>().onClick.AddListener(() =>
+            if (newDiamond.GetComponent<ButtonQuests>() != null)
             {
-                GameManager.Instance.PlayerStatesSystem.SetGameState("game");
-                GameManager.Instance.QuestsSystem.currentQuest.questObjects.GetComponent<QuestComponent>().lerpToPlayer.CameraLerpTo();
-                GameManager.Instance.GUIcontroller.questsScreen.HideQuestsScreen();
-            });
-        }
+                newDiamond.GetComponent<ButtonQuests>().questNumber = i + 1;
 
+                newDiamond.GetComponent<Button>().onClick.AddListener(() =>
+                {
+                    GameManager.Instance.PlayerStatesSystem.SetGameState("game");
+                    GameManager.Instance.QuestsSystem.currentQuest.questObjects.GetComponent<QuestComponent>().lerpToPlayer.CameraLerpTo();
+                    GameManager.Instance.GUIcontroller.questsScreen.HideQuestsScreen();
+                });
+            }
+        }
         diamonds[0].GetComponent<Selectable>().Select();
     }
 

@@ -21,6 +21,8 @@ public class ForkliftSteering : MonoBehaviour
     public float steeringSpeed = 1f;
     public float steeringInput = 0f;
 
+    public bool silnikUruchomiony = false;
+
     public Gear gear = Gear.d;
 
     private Rigidbody rb;
@@ -34,6 +36,12 @@ public class ForkliftSteering : MonoBehaviour
 
     public float holdBreakTimer = 0f;
     public float timeToSetReverse = 1f;
+
+    [Header("Pozwolenia")]
+    public bool mozliwoscJazdy = true;
+    public bool mozliwoscKierowania = true;
+    public bool mozliwoscPoruszaniaDziwgniami = true;
+    public bool mozliwoscUruchomieniaSilnika = true;
 
     void Start()
     {
@@ -71,56 +79,81 @@ public class ForkliftSteering : MonoBehaviour
             speedText.text = "Speed: " + Speed().ToString("f0") + " km/h";
 
         //Debug.Log ("Speed: " + (wheelRR.radius * Mathf.PI * wheelRR.rpm * 60f / 1000f) + "km/h    RPM: " + wheelRL.rpm);
-
-        float gazHamulecInput = Input.GetAxis("wozekGazHamulec");
-
-        if (gear == Gear.r) gazHamulecInput = -gazHamulecInput;
-        if (gazHamulecInput >= 0)
+        if (mozliwoscUruchomieniaSilnika || Input.GetKeyDown(KeyCode.I) || Input.GetKeyDown(KeyCode.JoystickButton3))
         {
-            holdBreakTimer = 0;
-            float scaledTorque = Input.GetAxis("wozekGazHamulec") * torque;
+            silnikUruchomiony = !silnikUruchomiony;
+            //pokaz na UI
+        }
 
-            if (wheelRL.rpm < idealRPM)
-                scaledTorque = Mathf.Lerp(scaledTorque, scaledTorque, wheelRL.rpm / idealRPM);
+
+        if (mozliwoscJazdy)
+        {
+            float gazHamulecInput = Input.GetAxis("wozekGazHamulec");
+
+            if (gear == Gear.r) gazHamulecInput = -gazHamulecInput;
+            if (silnikUruchomiony && gazHamulecInput >= 0)
+            {
+                holdBreakTimer = 0;
+                float scaledTorque = Input.GetAxis("wozekGazHamulec") * torque;
+
+                if (wheelRL.rpm < idealRPM)
+                    scaledTorque = Mathf.Lerp(scaledTorque, scaledTorque, wheelRL.rpm / idealRPM);
+                else
+                    scaledTorque = Mathf.Lerp(scaledTorque, 0, (wheelRL.rpm - idealRPM) / (maxRPM - idealRPM));
+
+                //DoRollBar(wheelFR, wheelFL);
+                //DoRollBar(wheelRR, wheelRL);
+
+
+                wheelFR.motorTorque = scaledTorque;
+                wheelFL.motorTorque = scaledTorque;
+                wheelRL.motorTorque = scaledTorque;
+                wheelRR.motorTorque = scaledTorque;
+
+
+
+                wheelFR.brakeTorque = 0;
+                wheelFL.brakeTorque = 0;
+                wheelRR.brakeTorque = 0;
+                wheelRL.brakeTorque = 0;
+
+
+            }
             else
-                scaledTorque = Mathf.Lerp(scaledTorque, 0, (wheelRL.rpm - idealRPM) / (maxRPM - idealRPM));
+            {
+                float gazHamulecABS = Mathf.Abs(gazHamulecInput);
+                wheelFR.brakeTorque = brakeTorque * gazHamulecABS;
+                wheelFL.brakeTorque = brakeTorque * gazHamulecABS;
+                wheelRR.brakeTorque = brakeTorque * gazHamulecABS;
+                wheelRL.brakeTorque = brakeTorque * gazHamulecABS;
 
-            //DoRollBar(wheelFR, wheelFL);
-            //DoRollBar(wheelRR, wheelRL);
+                rb.AddForce(-rb.velocity * gazHamulecABS * brakeForce);
 
-
-            wheelFR.motorTorque = scaledTorque;
-            wheelFL.motorTorque = scaledTorque;
-            wheelRL.motorTorque = scaledTorque;
-            wheelRR.motorTorque = scaledTorque;
-
-
-
-            wheelFR.brakeTorque = 0;
-            wheelFL.brakeTorque = 0;
-            wheelRR.brakeTorque = 0;
-            wheelRL.brakeTorque = 0;
-
-
+                if (silnikUruchomiony)
+                {
+                    if (Speed() < 0.02f) holdBreakTimer += Time.deltaTime;
+                    else holdBreakTimer = 0;
+                }
+            }
         }
-        else
+
+        if (!silnikUruchomiony)
         {
-            float gazHamulecABS = Mathf.Abs(gazHamulecInput);
-            wheelFR.brakeTorque = brakeTorque * gazHamulecABS;
-            wheelFL.brakeTorque = brakeTorque * gazHamulecABS;
-            wheelRR.brakeTorque = brakeTorque * gazHamulecABS;
-            wheelRL.brakeTorque = brakeTorque * gazHamulecABS;
-
-            rb.AddForce(-rb.velocity * gazHamulecABS * brakeForce);
-
-            if (Speed() < 0.02f) holdBreakTimer += Time.deltaTime;
-            else holdBreakTimer = 0;
+            wheelFR.brakeTorque = brakeTorque * 0.2f;
+            wheelFL.brakeTorque = brakeTorque * 0.2f;
+            wheelRR.brakeTorque = brakeTorque * 0.2f;
+            wheelRL.brakeTorque = brakeTorque * 0.2f;
         }
-        steeringInput += Input.GetAxis("wozekPrawoLewo") * Time.deltaTime * steeringSpeed;
-        steeringInput = Normalize(steeringInput);
 
-        wheelRR.steerAngle = -steeringInput;
-        wheelRL.steerAngle = -steeringInput;
+        if (mozliwoscKierowania)
+        {
+            steeringInput += Input.GetAxis("wozekPrawoLewo") * Time.deltaTime * steeringSpeed;
+            steeringInput = Normalize(steeringInput);
+
+            wheelRR.steerAngle = -steeringInput;
+            wheelRL.steerAngle = -steeringInput;
+        }
+
 
         //Debug.Log(wheelFR.rpm + "\t" + wheelFL.rpm + "\t" + wheelRR.rpm + "\t" + wheelRL.rpm);
 
@@ -132,10 +165,13 @@ public class ForkliftSteering : MonoBehaviour
             gear = gear == Gear.d ? Gear.r : Gear.d;
         }
 
-        if (ForkliftController.currentForklift != null)
+        if (mozliwoscPoruszaniaDziwgniami)
         {
-            float bieg = gear == Gear.d ? -1 : 1;
-            ForkliftController.currentForklift.forkliftComponent.sterowanieDzwigniami.UstawPolozenieDzwigni(bieg);
+            if (ForkliftController.currentForklift != null)
+            {
+                float bieg = gear == Gear.d ? -1 : 1;
+                ForkliftController.currentForklift.forkliftComponent.sterowanieDzwigniami.UstawPolozenieDzwigni(bieg);
+            }
         }
     }
 
