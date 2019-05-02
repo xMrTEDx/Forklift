@@ -2645,7 +2645,6 @@ GameObject:
   - component: {fileID: 4825822890399182}
   - component: {fileID: 54115933207259246}
   - component: {fileID: 114127808792009376}
-  - component: {fileID: 65455548891797620}
   - component: {fileID: 114342500489746422}
   - component: {fileID: 114480451208223710}
   - component: {fileID: 114940404264514736}
@@ -3416,9 +3415,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4054511570175672}
+  - component: {fileID: 65790596580067170}
   m_Layer: 0
   m_Name: Model
-  m_TagString: Untagged
+  m_TagString: Forklift
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12141,18 +12141,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 40, y: 20, z: 50}
   m_Center: {x: -17.5, y: 5, z: 0}
---- !u!65 &65455548891797620
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1794178569462156}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 5, y: 10.26, z: 14.5}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &65480851107740142
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -12213,6 +12201,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 40, y: 20, z: 50}
   m_Center: {x: -17.5, y: 5, z: 0}
+--- !u!65 &65790596580067170
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1965683903461688}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.93, y: 3.47, z: 3.92}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &65931036518543128
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -12395,6 +12395,15 @@ MonoBehaviour:
   przelozenieKierownicy: 3
   holdBreakTimer: 0
   timeToSetReverse: 1
+  mozliwoscJazdy: 1
+  mozliwoscKierowania: 1
+  mozliwoscPoruszaniaDziwgniami: 1
+  mozliwoscUruchomieniaSilnika: 1
+  WlaczenieSilnikaAction:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!114 &114194740125153248
 MonoBehaviour:
   m_ObjectHideFlags: 1

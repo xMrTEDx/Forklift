@@ -24,14 +24,14 @@ public class QuestsSystem : MonoBehaviour
 
     public void Init()
     {
-        if (PlayerPrefs.HasKey("Quest1"))
-            PlayerPrefs.DeleteKey("Quest1");
-        if (PlayerPrefs.HasKey("Quest2"))
-            PlayerPrefs.DeleteKey("Quest2");
-        if (PlayerPrefs.HasKey("Quest3"))
-            PlayerPrefs.DeleteKey("Quest3");
-        if (PlayerPrefs.HasKey("Quest4"))
-            PlayerPrefs.DeleteKey("Quest4");
+        // if (PlayerPrefs.HasKey("Quest1"))
+        //     PlayerPrefs.DeleteKey("Quest1");
+        // if (PlayerPrefs.HasKey("Quest2"))
+        //     PlayerPrefs.DeleteKey("Quest2");
+        // if (PlayerPrefs.HasKey("Quest3"))
+        //     PlayerPrefs.DeleteKey("Quest3");
+        // if (PlayerPrefs.HasKey("Quest4"))
+        //     PlayerPrefs.DeleteKey("Quest4");
         foreach (var item in quests)
         {
             item.Init(this);

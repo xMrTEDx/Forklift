@@ -6,6 +6,7 @@ TagManager:
   tags:
   - InteractionIndicator
   - Systems
+  - Forklift
   layers:
   - Default
   - TransparentFX

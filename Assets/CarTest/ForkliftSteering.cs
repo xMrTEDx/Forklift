@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using UnityEngine.Events;
 
 public class ForkliftSteering : MonoBehaviour
 {
@@ -43,6 +44,9 @@ public class ForkliftSteering : MonoBehaviour
     public bool mozliwoscPoruszaniaDziwgniami = true;
     public bool mozliwoscUruchomieniaSilnika = true;
 
+    [Space, Header("Eventy")]
+    public UnityEvent WlaczenieSilnikaAction;
+
     void Start()
     {
         rb = gameObject.GetComponent<Rigidbody>();
@@ -79,9 +83,10 @@ public class ForkliftSteering : MonoBehaviour
             speedText.text = "Speed: " + Speed().ToString("f0") + " km/h";
 
         //Debug.Log ("Speed: " + (wheelRR.radius * Mathf.PI * wheelRR.rpm * 60f / 1000f) + "km/h    RPM: " + wheelRL.rpm);
-        if (mozliwoscUruchomieniaSilnika || Input.GetKeyDown(KeyCode.I) || Input.GetKeyDown(KeyCode.JoystickButton3))
+        if (mozliwoscUruchomieniaSilnika && (Input.GetKeyDown(KeyCode.I) || Input.GetKeyDown(KeyCode.JoystickButton3)))
         {
             silnikUruchomiony = !silnikUruchomiony;
+            WlaczenieSilnikaAction.Invoke();
             //pokaz na UI
         }
 

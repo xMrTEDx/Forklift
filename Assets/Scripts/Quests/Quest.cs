@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Quest : MonoBehaviour
 {
-
+    public GameObject currentObject;
     private QuestsSystem questsSystem;
     public LerpController lerpToQuestCamera;
     public GameObject QuestObjects;
