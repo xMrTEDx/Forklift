@@ -24,4 +24,4 @@ MonoBehaviour:
     downLimit: -0.1
     upLimit: 4
     forwardDegreeLimit: 5
-    backwardDegreeLimit: -10
+    backwardDegreeLimit: -15

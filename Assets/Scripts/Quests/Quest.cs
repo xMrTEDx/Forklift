@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Quest : MonoBehaviour
 {
@@ -10,6 +11,9 @@ public class Quest : MonoBehaviour
     public GameObject QuestObjects;
 
     public ForkliftController forkliftController;
+
+    [Header("Events")]
+    public UnityEvent toPrepare;
 
     [TextArea]
     public string description;
@@ -29,5 +33,10 @@ public class Quest : MonoBehaviour
     public void Init(QuestsSystem qs)
     {
         questsSystem = qs;
+    }
+
+    public void PrepareQuest()
+    {
+        toPrepare.Invoke();
     }
 }

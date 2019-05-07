@@ -63,6 +63,8 @@ public class QuestsSystem : MonoBehaviour
             GameObject clone = Instantiate(quest.QuestObjects, currentQuestParent.transform, false);
             clone.SetActive(true);
             currentQuest = new QuestData(number, quest, clone);
+            MenagerPolek mp = GetComponentInChildren<MenagerPolek>();
+            if(mp != null) mp.Prepare();
 
             //Debug.Log(number);
             GameManager.Instance.GUIcontroller.questsScreen.SelectQuest(number);

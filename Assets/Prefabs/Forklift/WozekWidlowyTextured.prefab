@@ -2654,7 +2654,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1799924826680888
 GameObject:
   m_ObjectHideFlags: 1
@@ -12376,7 +12376,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   idealRPM: 0
-  maxRPM: 100
+  maxRPM: 200
   centerOfGravity: {fileID: 4418487329293596}
   wheelFR: {fileID: 146890108709307916}
   wheelFL: {fileID: 146129545013735626}
