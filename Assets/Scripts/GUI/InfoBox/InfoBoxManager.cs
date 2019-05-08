@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class InfoBoxManager : MonoBehaviour
@@ -11,11 +12,13 @@ public class InfoBoxManager : MonoBehaviour
     {
         text.text = infoBox.message;
         gameObject.SetActive(true);
-        Time.timeScale = 0;
-        
+
+
         closeButton.onClick.RemoveAllListeners();
         closeButton.onClick.AddListener(() => { HideInfo(); infoBox.e_OnCloseInfoBoxAction.Invoke(); });
         closeButton.Select();
+
+        Time.timeScale = 0;
     }
     public void HideInfo()
     {
