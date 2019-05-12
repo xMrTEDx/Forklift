@@ -14419,6 +14419,69 @@ Prefab:
     - {fileID: 54435926152509788, guid: c2e145d8d7b63de4e8e5aedb8b8301ed, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: c2e145d8d7b63de4e8e5aedb8b8301ed, type: 2}
   m_IsPrefabAsset: 0
+--- !u!1 &400719068
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 400719071}
+  - component: {fileID: 400719070}
+  - component: {fileID: 400719069}
+  m_Layer: 0
+  m_Name: MeduzaFlock (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!135 &400719069
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 400719068}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 10
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &400719070
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 400719068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bb3db1d5a315b94d88e0b0a475c3b71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  swimmingSpeed: 1
+  rotationSpeed: 0.1
+  rotationYSpeed: 0.1
+  distanceToTurnBack: 10
+  sizeMin: 1
+  sizeMax: 2
+  numberOfMeduza: 2
+  MeduzaPrefab: {fileID: 1315513872151786, guid: 5d5b6afc79dfd514f8f6c1bb61f7089a,
+    type: 2}
+  maxRotation: 120
+--- !u!4 &400719071
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 400719068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 105.6, y: 16.39, z: -112.7}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 33
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &402252598 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4063023363368038, guid: c2e145d8d7b63de4e8e5aedb8b8301ed,
@@ -21433,6 +21496,69 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4063023363368038, guid: c2e145d8d7b63de4e8e5aedb8b8301ed,
     type: 2}
   m_PrefabInternal: {fileID: 561619830}
+--- !u!1 &604227828
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 604227831}
+  - component: {fileID: 604227830}
+  - component: {fileID: 604227829}
+  m_Layer: 0
+  m_Name: MeduzaFlock (5)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!135 &604227829
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 604227828}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 10
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &604227830
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 604227828}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bb3db1d5a315b94d88e0b0a475c3b71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  swimmingSpeed: 1
+  rotationSpeed: 0.1
+  rotationYSpeed: 0.1
+  distanceToTurnBack: 10
+  sizeMin: 1
+  sizeMax: 2
+  numberOfMeduza: 2
+  MeduzaPrefab: {fileID: 1315513872151786, guid: 5d5b6afc79dfd514f8f6c1bb61f7089a,
+    type: 2}
+  maxRotation: 120
+--- !u!4 &604227831
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 604227828}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 100.7, y: 15.8, z: -129.2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 36
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &604840719
 Prefab:
   m_ObjectHideFlags: 0
@@ -25529,6 +25655,69 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4063023363368038, guid: c2e145d8d7b63de4e8e5aedb8b8301ed,
     type: 2}
   m_PrefabInternal: {fileID: 2119054763}
+--- !u!1 &745804766
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 745804769}
+  - component: {fileID: 745804768}
+  - component: {fileID: 745804767}
+  m_Layer: 0
+  m_Name: MeduzaFlock (7)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!135 &745804767
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 745804766}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 10
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &745804768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 745804766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bb3db1d5a315b94d88e0b0a475c3b71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  swimmingSpeed: 1
+  rotationSpeed: 0.1
+  rotationYSpeed: 0.1
+  distanceToTurnBack: 10
+  sizeMin: 1
+  sizeMax: 2
+  numberOfMeduza: 2
+  MeduzaPrefab: {fileID: 1315513872151786, guid: 5d5b6afc79dfd514f8f6c1bb61f7089a,
+    type: 2}
+  maxRotation: 120
+--- !u!4 &745804769
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 745804766}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 111.2, y: 22.5, z: -119.4}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 38
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &746355712
 Prefab:
   m_ObjectHideFlags: 0
@@ -26075,6 +26264,69 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 765086771}
   m_Mesh: {fileID: 4300226, guid: 9c7e3fc15ea1b724fbec1f103d90db07, type: 3}
+--- !u!1 &765219516
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 765219519}
+  - component: {fileID: 765219518}
+  - component: {fileID: 765219517}
+  m_Layer: 0
+  m_Name: MeduzaFlock (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!135 &765219517
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 765219516}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 10
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &765219518
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 765219516}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bb3db1d5a315b94d88e0b0a475c3b71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  swimmingSpeed: 1
+  rotationSpeed: 0.1
+  rotationYSpeed: 0.1
+  distanceToTurnBack: 10
+  sizeMin: 1
+  sizeMax: 2
+  numberOfMeduza: 2
+  MeduzaPrefab: {fileID: 1315513872151786, guid: 5d5b6afc79dfd514f8f6c1bb61f7089a,
+    type: 2}
+  maxRotation: 120
+--- !u!4 &765219519
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 765219516}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 91.463425, y: 16.39, z: -110.29}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 32
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &766084676
 GameObject:
   m_ObjectHideFlags: 0
@@ -35490,6 +35742,69 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1019028804}
   m_Mesh: {fileID: 4300220, guid: 9c7e3fc15ea1b724fbec1f103d90db07, type: 3}
+--- !u!1 &1020040937
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1020040940}
+  - component: {fileID: 1020040939}
+  - component: {fileID: 1020040938}
+  m_Layer: 0
+  m_Name: MeduzaFlock (8)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!135 &1020040938
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1020040937}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 10
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1020040939
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1020040937}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bb3db1d5a315b94d88e0b0a475c3b71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  swimmingSpeed: 1
+  rotationSpeed: 0.1
+  rotationYSpeed: 0.1
+  distanceToTurnBack: 10
+  sizeMin: 1
+  sizeMax: 2
+  numberOfMeduza: 2
+  MeduzaPrefab: {fileID: 1315513872151786, guid: 5d5b6afc79dfd514f8f6c1bb61f7089a,
+    type: 2}
+  maxRotation: 120
+--- !u!4 &1020040940
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1020040937}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 97, y: 22.5, z: -126.42}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 39
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1023391216
 Prefab:
   m_ObjectHideFlags: 0
@@ -44042,6 +44357,69 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c2e145d8d7b63de4e8e5aedb8b8301ed, type: 2}
   m_IsPrefabAsset: 0
+--- !u!1 &1310460339
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1310460341}
+  - component: {fileID: 1310460340}
+  - component: {fileID: 1310460342}
+  m_Layer: 0
+  m_Name: MeduzaFlock
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1310460340
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1310460339}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bb3db1d5a315b94d88e0b0a475c3b71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  swimmingSpeed: 1
+  rotationSpeed: 0.1
+  rotationYSpeed: 0.1
+  distanceToTurnBack: 10
+  sizeMin: 1
+  sizeMax: 2
+  numberOfMeduza: 2
+  MeduzaPrefab: {fileID: 1315513872151786, guid: 5d5b6afc79dfd514f8f6c1bb61f7089a,
+    type: 2}
+  maxRotation: 120
+--- !u!4 &1310460341
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1310460339}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 91.463425, y: 9.68, z: -125.656555}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 31
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &1310460342
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1310460339}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 10
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1311958382
 GameObject:
   m_ObjectHideFlags: 0
@@ -56455,6 +56833,69 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4770188322953272, guid: 08e4b69ba96b10b4e95ddefb9d8a477c,
     type: 2}
   m_PrefabInternal: {fileID: 50270430}
+--- !u!1 &1697664608
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1697664611}
+  - component: {fileID: 1697664610}
+  - component: {fileID: 1697664609}
+  m_Layer: 0
+  m_Name: MeduzaFlock (6)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!135 &1697664609
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1697664608}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 10
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1697664610
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1697664608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bb3db1d5a315b94d88e0b0a475c3b71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  swimmingSpeed: 1
+  rotationSpeed: 0.1
+  rotationYSpeed: 0.1
+  distanceToTurnBack: 10
+  sizeMin: 1
+  sizeMax: 2
+  numberOfMeduza: 2
+  MeduzaPrefab: {fileID: 1315513872151786, guid: 5d5b6afc79dfd514f8f6c1bb61f7089a,
+    type: 2}
+  maxRotation: 120
+--- !u!4 &1697664611
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1697664608}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 111.2, y: 15.8, z: -110.8}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 37
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1697983700
 GameObject:
   m_ObjectHideFlags: 0
@@ -63308,6 +63749,69 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4859667335436074, guid: 0cf1697daeb06594aa07e948ad79d555,
     type: 2}
   m_PrefabInternal: {fileID: 1487614938}
+--- !u!1 &1892057066
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1892057069}
+  - component: {fileID: 1892057068}
+  - component: {fileID: 1892057067}
+  m_Layer: 0
+  m_Name: MeduzaFlock (3)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!135 &1892057067
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1892057066}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 10
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1892057068
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1892057066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bb3db1d5a315b94d88e0b0a475c3b71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  swimmingSpeed: 1
+  rotationSpeed: 0.1
+  rotationYSpeed: 0.1
+  distanceToTurnBack: 10
+  sizeMin: 1
+  sizeMax: 2
+  numberOfMeduza: 2
+  MeduzaPrefab: {fileID: 1315513872151786, guid: 5d5b6afc79dfd514f8f6c1bb61f7089a,
+    type: 2}
+  maxRotation: 120
+--- !u!4 &1892057069
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1892057066}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 98.1, y: 10.9, z: -125.3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 34
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1899685251
 GameObject:
   m_ObjectHideFlags: 0
@@ -67455,6 +67959,52 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 10, y: 1, z: 20}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1001 &1992484070
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4789658209073178, guid: 5d5b6afc79dfd514f8f6c1bb61f7089a, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 90.49066
+      objectReference: {fileID: 0}
+    - target: {fileID: 4789658209073178, guid: 5d5b6afc79dfd514f8f6c1bb61f7089a, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 6.28
+      objectReference: {fileID: 0}
+    - target: {fileID: 4789658209073178, guid: 5d5b6afc79dfd514f8f6c1bb61f7089a, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -121.708496
+      objectReference: {fileID: 0}
+    - target: {fileID: 4789658209073178, guid: 5d5b6afc79dfd514f8f6c1bb61f7089a, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4789658209073178, guid: 5d5b6afc79dfd514f8f6c1bb61f7089a, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4789658209073178, guid: 5d5b6afc79dfd514f8f6c1bb61f7089a, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4789658209073178, guid: 5d5b6afc79dfd514f8f6c1bb61f7089a, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4789658209073178, guid: 5d5b6afc79dfd514f8f6c1bb61f7089a, type: 2}
+      propertyPath: m_RootOrder
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 1315513872151786, guid: 5d5b6afc79dfd514f8f6c1bb61f7089a, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5d5b6afc79dfd514f8f6c1bb61f7089a, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!4 &1993630429 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400016, guid: 469edab27ab6d004d84af2c4a851bd7f,
@@ -67493,7 +68043,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 294.6, y: 41.8}
+  m_AnchoredPosition: {x: 294.6, y: 41.80005}
   m_SizeDelta: {x: 561.1, y: 51.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1993643685
@@ -70973,6 +71523,69 @@ MonoBehaviour:
   m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 0
   m_ChildControlHeight: 0
+--- !u!1 &2090887491
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2090887494}
+  - component: {fileID: 2090887493}
+  - component: {fileID: 2090887492}
+  m_Layer: 0
+  m_Name: MeduzaFlock (4)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!135 &2090887492
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2090887491}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 10
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2090887493
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2090887491}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bb3db1d5a315b94d88e0b0a475c3b71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  swimmingSpeed: 1
+  rotationSpeed: 0.1
+  rotationYSpeed: 0.1
+  distanceToTurnBack: 10
+  sizeMin: 1
+  sizeMax: 2
+  numberOfMeduza: 2
+  MeduzaPrefab: {fileID: 1315513872151786, guid: 5d5b6afc79dfd514f8f6c1bb61f7089a,
+    type: 2}
+  maxRotation: 120
+--- !u!4 &2090887494
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2090887491}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 91.49, y: 10.9, z: -131.84}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 35
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2090906449
 Prefab:
   m_ObjectHideFlags: 0
