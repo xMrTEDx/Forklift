@@ -27,7 +27,7 @@ public class ForkliftController : MonoBehaviour
         //if(carriageSteering)
         carriageSteering.CarriageMove();
         //if(forkliftSteering)
-        forkliftSteering.SteeringForklift();
+        forkliftSteering.SterowanieWozkiem();
         //if(forkliftComponent)
         forkliftComponent.forkliftCameraController.RotateForkliftCamera();
         

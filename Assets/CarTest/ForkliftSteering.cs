@@ -6,37 +6,37 @@ using UnityEngine.Events;
 public class ForkliftSteering : MonoBehaviour
 {
 
-    public float idealRPM = 500f;
-    public float maxRPM = 1000f;
+    public float predkoscDocelowa = 500f;
+    public float predkoscMaksymalna = 1000f;
 
     public Transform centerOfGravity;
 
-    public WheelCollider wheelFR;
-    public WheelCollider wheelFL;
-    public WheelCollider wheelRR;
-    public WheelCollider wheelRL;
-    public float turnRadius = 6f;
-    public float torque = 25f;
-    public float brakeTorque = 100f;
-    public float brakeForce = 2000f;
-    public float steeringSpeed = 1f;
+    public WheelCollider koloPrzodPrawe;
+    public WheelCollider koloPrzodLewe;
+    public WheelCollider koloTylPrawe;
+    public WheelCollider koloTylLewe;
+    public float katObrotuKol = 6f;
+    public float silaPrzyspieszenia = 25f;
+    public float silaHamowaniaKol = 100f;
+    public float dodatkowaSilaHamowania = 2000f;
+    public float szybkoscSkrecania = 1f;
     public float steeringInput = 0f;
 
     public bool silnikUruchomiony = false;
 
-    public Gear gear = Gear.d;
+    public Bieg bieg = Bieg.d;
 
     private Rigidbody rb;
 
-    public Text speedText;
+    //public Text speedText;
     [Space]
     [Header("Kierownica")]
 
-    public GameObject steeringWheel;
+    public GameObject kierownica;
     public float przelozenieKierownicy = 3f;
 
-    public float holdBreakTimer = 0f;
-    public float timeToSetReverse = 1f;
+    public float czasZatrzymania = 0f;
+    public float czasDoZmianyKierunkuJazdy = 1f;
 
     [Header("Pozwolenia")]
     public bool mozliwoscJazdy = true;
@@ -51,7 +51,7 @@ public class ForkliftSteering : MonoBehaviour
     {
         rb = gameObject.GetComponent<Rigidbody>();
         rb.centerOfMass = centerOfGravity.localPosition;
-        SetsteeringWheelRotation();
+        UstawPolozenieKierownicy();
     }
 
     public float Speed()
@@ -61,33 +61,31 @@ public class ForkliftSteering : MonoBehaviour
 
     public float Rpm()
     {
-        return wheelRL.rpm;
+        return koloTylLewe.rpm;
     }
     void SetGearN()
     {
-        gear = Gear.d;
+        bieg = Bieg.d;
     }
     void SetGearD()
     {
-        gear = Gear.d;
+        bieg = Bieg.d;
     }
     void SetGearR()
     {
-        gear = Gear.r;
+        bieg = Bieg.r;
     }
 
-    public void SteeringForklift()
+    public void SterowanieWozkiem()
     {
 
-        if (speedText != null)
-            speedText.text = "Speed: " + Speed().ToString("f0") + " km/h";
+        //if (speedText != null)
+        //    speedText.text = "Speed: " + Speed().ToString("f0") + " km/h";
 
-        //Debug.Log ("Speed: " + (wheelRR.radius * Mathf.PI * wheelRR.rpm * 60f / 1000f) + "km/h    RPM: " + wheelRL.rpm);
         if (mozliwoscUruchomieniaSilnika && (Input.GetKeyDown(KeyCode.I) || Input.GetKeyDown(KeyCode.JoystickButton3)))
         {
             silnikUruchomiony = !silnikUruchomiony;
             WlaczenieSilnikaAction.Invoke();
-            //pokaz na UI
         }
 
 
@@ -95,129 +93,99 @@ public class ForkliftSteering : MonoBehaviour
         {
             float gazHamulecInput = Input.GetAxis("wozekGazHamulec");
 
-            if (gear == Gear.r) gazHamulecInput = -gazHamulecInput;
+            if (bieg == Bieg.r) gazHamulecInput = -gazHamulecInput;
             if (silnikUruchomiony && gazHamulecInput >= 0)
             {
-                holdBreakTimer = 0;
-                float scaledTorque = Input.GetAxis("wozekGazHamulec") * torque;
+                czasZatrzymania = 0;
+                float scaledTorque = Input.GetAxis("wozekGazHamulec") * silaPrzyspieszenia;
 
-                if (wheelRL.rpm < idealRPM)
-                    scaledTorque = Mathf.Lerp(scaledTorque, scaledTorque, wheelRL.rpm / idealRPM);
+                if (koloTylLewe.rpm < predkoscDocelowa)
+                    scaledTorque = Mathf.Lerp(scaledTorque, scaledTorque, koloTylLewe.rpm / predkoscDocelowa);
                 else
-                    scaledTorque = Mathf.Lerp(scaledTorque, 0, (wheelRL.rpm - idealRPM) / (maxRPM - idealRPM));
-
-                //DoRollBar(wheelFR, wheelFL);
-                //DoRollBar(wheelRR, wheelRL);
+                    scaledTorque = Mathf.Lerp(scaledTorque, 0, (koloTylLewe.rpm - predkoscDocelowa) / (predkoscMaksymalna - predkoscDocelowa));
 
 
-                wheelFR.motorTorque = scaledTorque;
-                wheelFL.motorTorque = scaledTorque;
-                wheelRL.motorTorque = scaledTorque;
-                wheelRR.motorTorque = scaledTorque;
+                koloPrzodPrawe.motorTorque = scaledTorque;
+                koloPrzodLewe.motorTorque = scaledTorque;
+                koloTylLewe.motorTorque = scaledTorque;
+                koloTylPrawe.motorTorque = scaledTorque;
 
 
 
-                wheelFR.brakeTorque = 0;
-                wheelFL.brakeTorque = 0;
-                wheelRR.brakeTorque = 0;
-                wheelRL.brakeTorque = 0;
+                koloPrzodPrawe.brakeTorque = 0;
+                koloPrzodLewe.brakeTorque = 0;
+                koloTylPrawe.brakeTorque = 0;
+                koloTylLewe.brakeTorque = 0;
 
 
             }
             else
             {
                 float gazHamulecABS = Mathf.Abs(gazHamulecInput);
-                wheelFR.brakeTorque = brakeTorque * gazHamulecABS;
-                wheelFL.brakeTorque = brakeTorque * gazHamulecABS;
-                wheelRR.brakeTorque = brakeTorque * gazHamulecABS;
-                wheelRL.brakeTorque = brakeTorque * gazHamulecABS;
+                koloPrzodPrawe.brakeTorque = silaHamowaniaKol * gazHamulecABS;
+                koloPrzodLewe.brakeTorque = silaHamowaniaKol * gazHamulecABS;
+                koloTylPrawe.brakeTorque = silaHamowaniaKol * gazHamulecABS;
+                koloTylLewe.brakeTorque = silaHamowaniaKol * gazHamulecABS;
 
-                rb.AddForce(-rb.velocity * gazHamulecABS * brakeForce);
+                rb.AddForce(-rb.velocity * gazHamulecABS * dodatkowaSilaHamowania);
 
                 if (silnikUruchomiony)
                 {
-                    if (Speed() < 0.02f) holdBreakTimer += Time.deltaTime;
-                    else holdBreakTimer = 0;
+                    if (Speed() < 0.02f) czasZatrzymania += Time.deltaTime;
+                    else czasZatrzymania = 0;
                 }
             }
         }
 
         if (!silnikUruchomiony)
         {
-            wheelFR.brakeTorque = brakeTorque * 0.2f;
-            wheelFL.brakeTorque = brakeTorque * 0.2f;
-            wheelRR.brakeTorque = brakeTorque * 0.2f;
-            wheelRL.brakeTorque = brakeTorque * 0.2f;
+            koloPrzodPrawe.brakeTorque = silaHamowaniaKol * 0.2f;
+            koloPrzodLewe.brakeTorque = silaHamowaniaKol * 0.2f;
+            koloTylPrawe.brakeTorque = silaHamowaniaKol * 0.2f;
+            koloTylLewe.brakeTorque = silaHamowaniaKol * 0.2f;
         }
 
         if (mozliwoscKierowania)
         {
-            steeringInput += Input.GetAxis("wozekPrawoLewo") * Time.deltaTime * steeringSpeed;
-            steeringInput = Normalize(steeringInput);
+            steeringInput += Input.GetAxis("wozekPrawoLewo") * Time.deltaTime * szybkoscSkrecania;
+            steeringInput = OgranicznikObrotuKol(steeringInput);
 
-            wheelRR.steerAngle = -steeringInput;
-            wheelRL.steerAngle = -steeringInput;
+            koloTylPrawe.steerAngle = -steeringInput;
+            koloTylLewe.steerAngle = -steeringInput;
         }
 
 
-        //Debug.Log(wheelFR.rpm + "\t" + wheelFL.rpm + "\t" + wheelRR.rpm + "\t" + wheelRL.rpm);
+        UstawPolozenieKierownicy();
 
-        SetsteeringWheelRotation();
-
-        if (holdBreakTimer > timeToSetReverse)
+        if (czasZatrzymania > czasDoZmianyKierunkuJazdy)
         {
-            holdBreakTimer = 0;
-            gear = gear == Gear.d ? Gear.r : Gear.d;
+            czasZatrzymania = 0;
+            bieg = bieg == Bieg.d ? Bieg.r : Bieg.d;
         }
 
         if (mozliwoscPoruszaniaDziwgniami)
         {
             if (ForkliftController.currentForklift != null)
             {
-                float bieg = gear == Gear.d ? -1 : 1;
+                float bieg = this.bieg == Bieg.d ? -1 : 1;
                 ForkliftController.currentForklift.forkliftComponent.sterowanieDzwigniami.UstawPolozenieDzwigni(bieg);
             }
         }
     }
 
-
-    /*void DoRollBar(WheelCollider WheelL, WheelCollider WheelR)
+    float OgranicznikObrotuKol(float value)
     {
-        WheelHit hit;
-        float travelL = 1.0f;
-        float travelR = 1.0f;
-
-        bool groundedL = WheelL.GetGroundHit(out hit);
-        if (groundedL)
-            travelL = (-WheelL.transform.InverseTransformPoint(hit.point).y - WheelL.radius) / WheelL.suspensionDistance;
-
-        bool groundedR = WheelR.GetGroundHit(out hit);
-        if (groundedR)
-            travelR = (-WheelR.transform.InverseTransformPoint(hit.point).y - WheelR.radius) / WheelR.suspensionDistance;
-
-        // float antiRollForce = (travelL - travelR) * AntiRoll;
-
-        // if (groundedL)
-        // 	gameObject.GetComponent<Rigidbody>().AddForceAtPosition(WheelL.transform.up * -antiRollForce,
-        // 	                             WheelL.transform.position); 
-        // if (groundedR)
-        // 	gameObject.GetComponent<Rigidbody>().AddForceAtPosition(WheelR.transform.up * antiRollForce,
-        // 	                             WheelR.transform.position); 
-    }
-    */
-    float Normalize(float value)
-    {
-        if (value > turnRadius) return turnRadius;
-        else if (value < -turnRadius) return -turnRadius;
+        if (value > przelozenieKierownicy) return przelozenieKierownicy;
+        else if (value < -przelozenieKierownicy) return -przelozenieKierownicy;
         else return value;
     }
-    void SetsteeringWheelRotation()
+    void UstawPolozenieKierownicy()
     {
-        steeringWheel.transform.localRotation = Quaternion.Euler(0, steeringInput * przelozenieKierownicy, 0);
+        kierownica.transform.localRotation = Quaternion.Euler(0, steeringInput * przelozenieKierownicy, 0);
 
     }
 
-    public enum Gear
+    public enum Bieg
     {
         d,
         r

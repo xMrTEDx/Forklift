@@ -4,5 +4,9 @@ using UnityEngine;
 
 public class Meduza : MonoBehaviour {
 
-	public float predkosc=0;
+	public bool direction;
+	public bool wznoszenie = true;
+
+	public float speed;
+
 }
