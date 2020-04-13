@@ -11,7 +11,7 @@ public class CurrentObjectEnterTrigger : MonoBehaviour {
 	{
 		if(other.gameObject == GameManager.Instance.QuestsSystem.currentQuest.quest.currentObject)
 		{
-			GameManager.Instance.QuestsSystem.currentQuest.quest.currentObject = null;
+			//GameManager.Instance.QuestsSystem.currentQuest.quest.currentObject = null;
 			e_OnTriggerEnterAction.Invoke();
 			//gameObject.SetActive(false);
 		}
