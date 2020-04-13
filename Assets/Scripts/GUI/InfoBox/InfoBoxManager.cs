@@ -17,8 +17,11 @@ public class InfoBoxManager : MonoBehaviour
         closeButton.onClick.RemoveAllListeners();
         closeButton.onClick.AddListener(() => { HideInfo(); infoBox.e_OnCloseInfoBoxAction.Invoke(); });
         closeButton.Select();
+        closeButton.OnPointerEnter(new PointerEventData(EventSystem.current));
 
         Time.timeScale = 0;
+
+        //EventSystem.current.SetSelectedGameObject(closeButton.gameObject);
     }
     public void HideInfo()
     {

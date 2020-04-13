@@ -17,5 +17,6 @@ public class Polka : MonoBehaviour
 	{
 		public Transform Miejsce;
 		public bool CzyWolne = true;
+		public GameObject paleta;
 	}
 }
